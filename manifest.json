@@ -1,0 +1,19 @@
+{
+  "name": "Labour Hisab - Construction Attendance & Payment",
+  "short_name": "Labour Hisab",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#1264e8",
+  "description": "Hindi + English labour attendance, daily wage, overtime, payment, advance and balance tracker.",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

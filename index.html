@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1264e8">
+<link rel="manifest" href="manifest.json">
+<title>Labour Hisab</title>
+<style>
+:root{--blue:#1264e8;--dark:#101a2e;--bg:#f4f7fb;--card:#fff;--muted:#6d7890;--line:#e3e8f1;--green:#0ca678;--red:#e5484d;--orange:#e99b20}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#172033;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:linear-gradient(135deg,#0d58d9,#1976ff);color:#fff;padding:14px 15px 12px;position:sticky;top:0;z-index:10;box-shadow:0 3px 15px #0b4db633}
+.top{display:flex;align-items:center;gap:10px}.logo{width:46px;height:46px;border-radius:14px;background:#fff;display:grid;place-items:center;overflow:hidden}.logo svg{width:38px;height:38px}
+h1{font-size:21px;margin:0}.sub{font-size:11px;opacity:.9}.lang{margin-left:auto;border:1px solid #ffffff55;background:#ffffff1c;color:#fff;border-radius:10px;padding:8px 10px;font-weight:800}
+nav{display:flex;gap:6px;overflow:auto;margin-top:12px}nav button{border:0;background:#ffffff1d;color:#fff;border-radius:10px;padding:9px 11px;font-weight:800;white-space:nowrap}nav button.active{background:#fff;color:var(--blue)}
+main{max-width:980px;margin:auto;padding:12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:11px;box-shadow:0 3px 14px #15213d0b}
+.stat b{display:block;font-size:22px;margin-top:4px}.muted{font-size:12px;color:var(--muted)}.row{display:flex;gap:8px;align-items:center;justify-content:space-between}.row>*{flex:1}
+label{font-size:12px;font-weight:800;color:#4d596c;display:block;margin-top:7px}input,select{width:100%;padding:11px;border:1px solid #d5dce8;border-radius:10px;background:#fff;font-size:15px;margin:5px 0 10px}
+button{font:inherit;cursor:pointer}.primary{background:var(--blue);color:#fff;border:0;border-radius:11px;padding:11px 14px;font-weight:800}.secondary{background:#edf4ff;color:var(--blue);border:0;border-radius:10px;padding:10px 12px;font-weight:800}.danger{background:#ffe9ea;color:#b4232a;border:0;border-radius:10px;padding:9px 11px;font-weight:800}
+.worker{display:flex;justify-content:space-between;gap:12px;align-items:center}.avatar{width:42px;height:42px;border-radius:13px;background:#eaf2ff;color:var(--blue);display:grid;place-items:center;font-weight:900}.who{display:flex;align-items:center;gap:10px}.pill{display:inline-block;padding:3px 8px;border-radius:20px;background:#edf4ff;color:var(--blue);font-size:11px;font-weight:800}.money{font-weight:900}.hidden{display:none!important}.empty{text-align:center;padding:25px;color:#7b879a}
+.attrow{display:grid;grid-template-columns:1.4fr 54px 54px 54px 75px;gap:6px;align-items:center;border-top:1px solid var(--line);padding:10px 0}.attrow button{border:1px solid #d8dfeb;background:#fff;border-radius:9px;padding:8px 2px;font-weight:900}.attrow button.onP{background:#dff7ec;border-color:#3cbf83;color:#087443}.attrow button.onH{background:#fff2d9;border-color:#e4a53b;color:#875400}.attrow button.onA{background:#ffe4e6;border-color:#e36b71;color:#a31d26}.attrow button.onOT{background:#e7efff;border-color:#6b91ef;color:#154dbb}
+.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:left}.right{text-align:right!important}
+.hero{background:linear-gradient(135deg,#0e5edb,#1d79ff);color:#fff;border-radius:18px;padding:18px;margin-bottom:11px}.hero h2{margin:0 0 4px;font-size:23px}.hero p{margin:0;opacity:.9}
+.install{position:fixed;right:14px;bottom:18px;z-index:20;box-shadow:0 8px 25px #1264e855}
+footer{text-align:center;color:#8a94a6;font-size:11px;padding:20px}
+@media(max-width:650px){.grid4{grid-template-columns:repeat(2,1fr)}.attrow{grid-template-columns:1fr 47px 47px 47px 60px}.attrow .otlabel{display:none}.worker .actions{display:flex;flex-direction:column}.hero h2{font-size:20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="logo">
+      <svg viewBox="0 0 64 64" aria-label="Labour Hisab logo">
+        <path d="M32 6 8 18v27l24 13 24-13V18L32 6Z" fill="#1264e8"/>
+        <path d="M18 31h28v17H18z" fill="#fff"/><path d="m16 31 16-13 16 13" fill="none" stroke="#ffd21a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="32" cy="25" r="5" fill="#ffd21a"/><path d="M27 25h10M25 48h14" stroke="#1264e8" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div><h1>Labour Hisab</h1><div class="sub" id="subtitle">Attendance • Work • Payment • Balance</div></div>
+    <button class="lang" onclick="toggleLang()" id="langBtn">हिंदी</button>
+  </div>
+  <nav>
+    <button class="active" data-page="home" onclick="go('home',this)">Home</button>
+    <button data-page="labour" onclick="go('labour',this)">Labour</button>
+    <button data-page="attendance" onclick="go('attendance',this)">Attendance</button>
+    <button data-page="payment" onclick="go('payment',this)">Payment</button>
+    <button data-page="report" onclick="go('report',this)">Reports</button>
+    <button data-page="settings" onclick="go('settings',this)">Settings</button>
+  </nav>
+</header>
+
+<main>
+<section id="home">
+  <div class="hero"><h2 id="welcome">Hello 👋</h2><p id="todayText"></p></div>
+  <div class="grid4">
+    <div class="card stat"><span class="muted" data-en="Total Labour" data-hi="कुल मजदूर">Total Labour</span><b id="sLabour">0</b></div>
+    <div class="card stat"><span class="muted" data-en="Present Today" data-hi="आज उपस्थित">Present Today</span><b id="sPresent">0</b></div>
+    <div class="card stat"><span class="muted" data-en="Total Earned" data-hi="कुल मजदूरी">Total Earned</span><b id="sEarn">₹0</b></div>
+    <div class="card stat"><span class="muted" data-en="Total Paid" data-hi="कुल दिया">Total Paid</span><b id="sPaid">₹0</b></div>
+  </div>
+  <div class="card">
+    <div class="row"><div><b data-en="Quick Attendance" data-hi="आज की हाजिरी">Quick Attendance</b><div class="muted" data-en="Mark today's P / H / A and OT" data-hi="आज P / H / A और OT लगाएं">Mark today's P / H / A and OT</div></div><button class="primary" onclick="go('attendance')">Open</button></div>
+  </div>
+  <div class="card">
+    <b data-en="Quick Payment" data-hi="बीच में पैसा देना">Quick Payment</b>
+    <div class="muted" data-en="Record advance or any payment immediately." data-hi="Advance या बीच में दिया कोई भी पैसा तुरंत लिखें।">Record advance or any payment immediately.</div>
+    <button class="secondary" style="margin-top:10px" onclick="go('payment')">+ Add Payment</button>
+  </div>
+</section>
+
+<section id="labour" class="hidden">
+  <div class="card">
+    <h3 data-en="Add Labour / Mistri" data-hi="मजदूर / मिस्त्री जोड़ें">Add Labour / Mistri</h3>
+    <label data-en="Name" data-hi="नाम">Name</label><input id="wName" placeholder="e.g. Sanjo Kumar">
+    <label data-en="Work Type" data-hi="काम">Work Type</label>
+    <select id="wRole"><option>Mistri / मिस्त्री</option><option>Labour / लेबर</option><option>Helper / हेल्पर</option><option>Other / अन्य</option></select>
+    <label data-en="Daily Rate (₹)" data-hi="दिहाड़ी (₹)">Daily Rate (₹)</label><input id="wRate" type="number" value="650">
+    <label data-en="OT Rate / hour (₹)" data-hi="OT रेट / घंटा (₹)">OT Rate / hour (₹)</label><input id="wOT" type="number" value="100">
+    <label data-en="Site" data-hi="साइट">Site</label><input id="wSite" placeholder="Site 1">
+    <button class="primary" onclick="addWorker()" data-en="Save Labour" data-hi="मजदूर सेव करें">Save Labour</button>
+  </div>
+  <div id="labourList"></div>
+</section>
+
+<section id="attendance" class="hidden">
+  <div class="card">
+    <div class="row"><div><h3 data-en="Daily Attendance" data-hi="रोज की हाजिरी">Daily Attendance</h3><div class="muted">P = Full • H = Half • A = Absent • OT = Overtime</div></div><input id="attDate" type="date" onchange="renderAttendance()"></div>
+  </div>
+  <div class="card" id="attList"></div>
+</section>
+
+<section id="payment" class="hidden">
+  <div class="card">
+    <h3 data-en="Add Payment / Advance" data-hi="पेमेंट / एडवांस जोड़ें">Add Payment / Advance</h3>
+    <label data-en="Labour" data-hi="मजदूर">Labour</label><select id="pWorker"></select>
+    <label data-en="Amount (₹)" data-hi="रकम (₹)">Amount (₹)</label><input id="pAmount" type="number" placeholder="2000">
+    <label data-en="Note" data-hi="नोट">Note</label><input id="pNote" placeholder="Advance / weekly payment">
+    <button class="primary" onclick="addPayment()" data-en="Save Payment" data-hi="पेमेंट सेव करें">Save Payment</button>
+  </div>
+  <div id="paymentList"></div>
+</section>
+
+<section id="report" class="hidden">
+  <div class="card">
+    <h3 data-en="Labour Report" data-hi="मजदूर का पूरा हिसाब">Labour Report</h3>
+    <label data-en="Select Labour" data-hi="मजदूर चुनें">Select Labour</label><select id="rWorker" onchange="renderReport()"></select>
+    <div id="rBody"></div>
+  </div>
+  <div class="card"><button class="secondary" onclick="printReport()">🖨️ Print / Save PDF</button> <button class="secondary" onclick="exportCSV()">Export CSV</button></div>
+</section>
+
+<section id="settings" class="hidden">
+  <div class="card">
+    <h3 data-en="Settings" data-hi="सेटिंग्स">Settings</h3>
+    <label data-en="Your Name / Company" data-hi="आपका नाम / कंपनी">Your Name / Company</label><input id="company" placeholder="Subhash Construction">
+    <label data-en="Default Daily Rate (₹)" data-hi="डिफॉल्ट दिहाड़ी (₹)">Default Daily Rate (₹)</label><input id="defRate" type="number">
+    <label data-en="Default OT Rate / hour (₹)" data-hi="डिफॉल्ट OT रेट / घंटा (₹)">Default OT Rate / hour (₹)</label><input id="defOT" type="number">
+    <button class="primary" onclick="saveSettings()">Save Settings</button>
+  </div>
+  <div class="card">
+    <b data-en="Backup & Restore" data-hi="बैकअप और वापस लाना">Backup & Restore</b><p class="muted" data-en="Keep a backup before changing phones." data-hi="फोन बदलने से पहले Backup जरूर रखें।">Keep a backup before changing phones.</p>
+    <button class="secondary" onclick="exportJSON()">Download Backup</button>
+    <button class="secondary" onclick="document.getElementById('file').click()">Restore Backup</button>
+    <input id="file" type="file" accept=".json" class="hidden" onchange="importJSON(event)">
+  </div>
+  <div class="card"><button class="danger" onclick="resetAll()" data-en="Delete All Data" data-hi="सारा डेटा मिटाएं">Delete All Data</button></div>
+</section>
+</main>
+<footer>Labour Hisab • Simple • Fast • Hindi + English</footer>
+<button id="installBtn" class="primary install hidden" onclick="installApp()">📲 Install App</button>
+
+<script>
+const KEY='labour_hisab_advanced_v1';
+let db=JSON.parse(localStorage.getItem(KEY)||'{"workers":[],"attendance":{},"payments":[],"settings":{"company":"Subhash Construction","defRate":650,"defOT":100},"lang":"en"}');
+const $=id=>document.getElementById(id);
+const today=new Date().toISOString().slice(0,10); $('attDate').value=today;
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('installBtn').classList.remove('hidden')});
+
+function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function money(n){return '₹'+Math.round(n||0).toLocaleString('en-IN')}
+function go(id,btn){document.querySelectorAll('main>section').forEach(x=>x.classList.add('hidden'));$(id).classList.remove('hidden');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');else document.querySelector(`nav button[data-page="${id}"]`)?.classList.add('active');renderAll()}
+function toggleLang(){db.lang=db.lang==='en'?'hi':'en';save()}
+function applyLang(){
+  const hi=db.lang==='hi'; $('langBtn').textContent=hi?'English':'हिंदी';
+  $('subtitle').textContent=hi?'हाजिरी • काम • पेमेंट • बाकी':'Attendance • Work • Payment • Balance';
+  document.querySelectorAll('[data-en]').forEach(el=>el.textContent=hi?el.dataset.hi:el.dataset.en);
+}
+function addWorker(){
+  const name=$('wName').value.trim(); if(!name)return alert(db.lang==='hi'?'नाम डालें':'Enter name');
+  db.workers.push({id:Date.now(),name,role:$('wRole').value,rate:Number($('wRate').value)||db.settings.defRate,otRate:Number($('wOT').value)||db.settings.defOT,site:$('wSite').value.trim(),active:true});
+  $('wName').value='';$('wSite').value='';save();
+}
+function addPayment(){
+  const wid=Number($('pWorker').value),amount=Number($('pAmount').value)||0;
+  if(!wid||amount<=0)return alert(db.lang==='hi'?'मजदूर और रकम भरें':'Select labour and amount');
+  db.payments.push({id:Date.now(),wid,amount,note:$('pNote').value.trim(),date:new Date().toISOString().slice(0,10)});
+  $('pAmount').value='';$('pNote').value='';save();
+}
+function mark(wid,status){
+  const d=$('attDate').value;if(!db.attendance[d])db.attendance[d]={};
+  db.attendance[d][wid]=status;save();
+}
+function setOT(wid){
+  const d=$('attDate').value;if(!db.attendance[d])db.attendance[d]={};
+  const old=db.attendance[d][wid];
+  if(old==='OT')delete db.attendance[d][wid];else db.attendance[d][wid]='OT';
+  save();
+}
+function stats(w){
+  let p=0,h=0,ot=0;
+  for(const day of Object.values(db.attendance)){const s=day[w.id];if(s==='P')p++;if(s==='H')h++;if(s==='OT')ot++}
+  return {p,h,days:p+h/2,ot};
+}
+function earned(w){
+  const s=stats(w);return s.p*w.rate+s.h*w.rate/2+s.ot*w.otRate;
+}
+function paid(wid){return db.payments.filter(p=>p.wid===wid).reduce((a,p)=>a+p.amount,0)}
+function renderWorkers(){
+  $('labourList').innerHTML=db.workers.length?db.workers.map(w=>{
+    const s=stats(w), bal=earned(w)-paid(w.id);
+    return `<div class="card worker"><div class="who"><div class="avatar">${esc(w.name[0]||'L')}</div><div><b>${esc(w.name)}</b> <span class="pill">${esc(w.role)}</span><div class="muted">${esc(w.site||'No site')} • ${money(w.rate)}/day • ${s.days} days</div></div></div><div class="actions"><div class="money">${money(Math.max(0,bal))}</div><button class="danger" onclick="delWorker(${w.id})">Delete</button></div></div>`
+  }).join(''):'<div class="card empty">No labour added yet.</div>';
+  const opts=db.workers.map(w=>`<option value="${w.id}">${esc(w.name)} — ${esc(w.role)}</option>`).join('');
+  $('pWorker').innerHTML=opts;$('rWorker').innerHTML=opts;
+}
+function renderAttendance(){
+  const d=$('attDate').value,items=db.attendance[d]||{};
+  if(!db.workers.length){$('attList').innerHTML='<div class="empty">Add labour first.</div>';return}
+  $('attList').innerHTML=`<div class="attrow" style="border-top:0"><b>Name</b><b>P</b><b>H</b><b>A</b><b>OT</b></div>`+
+  db.workers.map(w=>{const s=items[w.id]||'';return `<div class="attrow"><div><b>${esc(w.name)}</b><div class="muted">${money(w.rate)}</div></div><button class="${s==='P'?'onP':''}" onclick="mark(${w.id},'P')">P</button><button class="${s==='H'?'onH':''}" onclick="mark(${w.id},'H')">H</button><button class="${s==='A'?'onA':''}" onclick="mark(${w.id},'A')">A</button><button class="${s==='OT'?'onOT':''}" onclick="setOT(${w.id})">OT</button></div>`}).join('');
+}
+function renderPayments(){
+  $('paymentList').innerHTML=db.payments.length?db.payments.slice().reverse().map(p=>{const w=db.workers.find(x=>x.id===p.wid);return `<div class="card row"><div><b>${esc(w?.name||'Deleted')}</b><div class="muted">${p.date} • ${esc(p.note||'Payment')}</div></div><b>${money(p.amount)}</b></div>`}).join(''):'<div class="card empty">No payments yet.</div>';
+}
+function renderReport(){
+  const w=db.workers.find(x=>x.id===Number($('rWorker').value));if(!w){$('rBody').innerHTML='';return}
+  const s=stats(w),e=earned(w),pa=paid(w.id),bal=e-pa;
+  const pays=db.payments.filter(p=>p.wid===w.id).slice().reverse();
+  $('rBody').innerHTML=`<hr><h3>${esc(w.name)}</h3><p class="muted">${esc(w.role)} • ${money(w.rate)}/day • OT ${money(w.otRate)}/hour • ${esc(w.site||'')}</p>
+  <div class="grid"><div class="card"><span class="muted">Full Days</span><div class="stat"><b>${s.p}</b></div></div><div class="card"><span class="muted">Half Days</span><div class="stat"><b>${s.h}</b></div></div><div class="card"><span class="muted">Total Work</span><div class="stat"><b>${s.days}</b></div></div><div class="card"><span class="muted">OT Hours</span><div class="stat"><b>${s.ot}</b></div></div></div>
+  <p>💰 Earned: <b>${money(e)}</b><br>💵 Paid / Advance: <b>${money(pa)}</b><br>📌 Balance: <b>${money(Math.max(0,bal))}</b></p>
+  <h4>Payment History</h4>${pays.length?'<table class="table"><tr><th>Date</th><th>Note</th><th class="right">Amount</th></tr>'+pays.map(p=>`<tr><td>${p.date}</td><td>${esc(p.note||'Payment')}</td><td class="right">${money(p.amount)}</td></tr>`).join('')+'</table>':'<div class="muted">No payment history.</div>'}`;
+}
+function renderHome(){
+  $('sLabour').textContent=db.workers.length;
+  const x=db.attendance[today]||{};$('sPresent').textContent=Object.values(x).filter(v=>v==='P'||v==='H'||v==='OT').length;
+  $('sEarn').textContent=money(db.workers.reduce((a,w)=>a+earned(w),0));
+  $('sPaid').textContent=money(db.payments.reduce((a,p)=>a+p.amount,0));
+  $('welcome').textContent=(db.settings.company||'Labour Hisab')+' 👋';
+  $('todayText').textContent=new Date().toLocaleDateString(db.lang==='hi'?'hi-IN':'en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+}
+function renderSettings(){$('company').value=db.settings.company||'';$('defRate').value=db.settings.defRate||650;$('defOT').value=db.settings.defOT||100}
+function saveSettings(){db.settings.company=$('company').value.trim()||'Labour Hisab';db.settings.defRate=Number($('defRate').value)||650;db.settings.defOT=Number($('defOT').value)||100;save();alert(db.lang==='hi'?'सेटिंग सेव हो गई':'Settings saved')}
+function delWorker(id){if(confirm(db.lang==='hi'?'इस मजदूर को हटाएं?':'Delete this labour?')){db.workers=db.workers.filter(w=>w.id!==id);save()}}
+function exportJSON(){const b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});downloadBlob(b,'labour-hisab-backup.json')}
+function importJSON(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.workers||!x.attendance||!x.payments)throw 0;db=x;save();alert('Backup restored')}catch(_){alert('Invalid backup file')}};r.readAsText(f)}
+function exportCSV(){
+  let rows=[['Labour','Role','Site','Full Days','Half Days','OT','Earned','Paid','Balance']];
+  db.workers.forEach(w=>{const s=stats(w),e=earned(w),p=paid(w.id);rows.push([w.name,w.role,w.site,s.p,s.h,s.ot,e,p,Math.max(0,e-p)])});
+  const csv=rows.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\n');
+  downloadBlob(new Blob([csv],{type:'text/csv'}),'labour-hisab-report.csv');
+}
+function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+function printReport(){window.print()}
+function resetAll(){if(confirm('Delete all Labour Hisab data?')){localStorage.removeItem(KEY);location.reload()}}
+async function installApp(){if(!deferredPrompt)return alert('Open this website in Chrome and use the browser menu → Add to Home screen.');deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$('installBtn').classList.add('hidden')}
+function renderAll(){applyLang();renderHome();renderWorkers();renderAttendance();renderPayments();renderReport();renderSettings()}
+renderAll();
+if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js');
+</script>
+</body>
+</html>
