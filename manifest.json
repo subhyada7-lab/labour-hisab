@@ -1,17 +1,1 @@
-{
-  "short_name": "लेबर हिसाब",
-  "name": "Labour Hisab - लेबर हाजिरी और भुगतान",
-  "icons": [
-    {
-      "src": "icon.svg",
-      "type": "image/svg+xml",
-      "sizes": "192x192 512x512"
-    }
-  ],
-  "start_url": "./index.html",
-  "background_color": "#ffffff",
-  "theme_color": "#2563eb",
-  "display": "standalone",
-  "orientation": "portrait",
-  "lang": "hi"
-}
+{"name":"Labour Hisab Pro","short_name":"Labour Hisab","start_url":"./","display":"standalone","background_color":"#f4f7fb","theme_color":"#075bd6","description":"Professional Hindi-English construction workforce, attendance and payment management."}
