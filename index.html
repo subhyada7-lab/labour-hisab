@@ -5,90 +5,168 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Labour Hisab</title>
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 12px; background: #f4f7fe; color: #101a2e; }
-    header { background: #1264e8; color: white; padding: 12px; border-radius: 8px; margin-bottom: 15px; }
-    .card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    input, select, button { width: 100%; padding: 10px; margin: 6px 0 12px; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box; }
-    button.primary { background: #1264e8; color: white; border: none; font-weight: bold; cursor: pointer; }
-    .worker { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+    :root { --p: #1264e8; --bg: #f4f7fe; }
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 0; background: var(--bg); color: #101a2e; padding-bottom: 30px; }
+    header { background: var(--p); color: white; padding: 16px; text-align: center; }
+    .nav { display: flex; background: white; padding: 8px; gap: 6px; overflow-x: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .nav button { flex: 1; padding: 10px; border: none; background: #f0f2f5; border-radius: 8px; font-weight: bold; white-space: nowrap; cursor: pointer; }
+    .nav button.active { background: var(--p); color: white; }
+    .container { padding: 12px; max-width: 600px; margin: 0 auto; }
+    .card { background: white; padding: 16px; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+    input, select { width: 100%; padding: 10px; margin: 6px 0 12px; border: 1px solid #dcdfe6; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
+    button.btn { width: 100%; padding: 12px; background: var(--p); color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; }
+    .worker-card { display: flex; justify-content: space-between; align-items: center; }
+    .worker-info { display: flex; align-items: center; gap: 10px; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 20px; }
     .hidden { display: none; }
   </style>
 </head>
 <body>
 
 <header>
-  <h2 style="margin:0;">🔨 Labour Hisab</h2>
+  <h2 style="margin:0;">Labour Hisab</h2>
+  <small>Attendance • Work • Payment • Balance</small>
 </header>
 
-<div class="card">
-  <h3>🎙️ AI बोलकर हाजिरी लगाएँ</h3>
-  <button class="primary" onclick="startAI()" style="background:#28a745;">🎤 बोलें (AI Voice)</button>
-  <p id="aiStatus" style="font-size:12px; color:gray; text-align:center;">बटन दबाकर बोलें: "रमेश प्रेजेंट"</p>
+<div style="text-align:center; margin: 10px 0;">
+  <button onclick="startAI()" style="background:#28a745; color:white; border:none; padding:10px 18px; border-radius:20px; font-weight:bold; cursor:pointer;">
+    🎙️ AI बोलकर हाजिरी लगाएँ
+  </button>
+  <p id="aiStatus" style="font-size:12px; color:gray; margin-top:5px;"></p>
 </div>
 
-<div class="card">
-  <h3>➕ मजदूर जोड़ें</h3>
-  <label>नाम:</label>
-  <input type="text" id="wName" placeholder="जैसे: रमेश">
-  <label>दिहाड़ी (₹):</label>
-  <input type="number" id="wRate" placeholder="जैसे: 500">
-  <label>📷 फोटो (ऐच्छिक):</label>
-  <input type="file" id="wPhoto" accept="image/*" capture="environment">
-  <button class="primary" onclick="addWorker()">जोड़ें</button>
+<div class="nav">
+  <button id="tab-labour" class="active" onclick="switchTab('labour')">Labour</button>
+  <button id="tab-attendance" onclick="switchTab('attendance')">Attendance</button>
+  <button id="tab-payment" onclick="switchTab('payment')">Payment</button>
 </div>
 
-<div class="card">
-  <h3>📋 मजदूरों की लिस्ट</h3>
-  <div id="labourList"></div>
+<div class="container">
+  <!-- LABOUR TAB -->
+  <section id="sec-labour">
+    <div class="card">
+      <h3>Add Labour / Mistri</h3>
+      <label>Name</label>
+      <input type="text" id="wName" placeholder="जैसे: Subhash">
+      
+      <label>Work Type</label>
+      <select id="wRole">
+        <option>Mistri / मिस्त्री</option>
+        <option>Labour / लेबर</option>
+      </select>
+      
+      <label>Daily Rate (₹)</label>
+      <input type="number" id="wRate" placeholder="650">
+      
+      <label>OT Rate / hour (₹)</label>
+      <input type="number" id="wOTRate" placeholder="100">
+      
+      <label>Site</label>
+      <input type="text" id="wSite" placeholder="Ram pur">
+      
+      <label>📷 लेबर फोटो</label>
+      <input type="file" id="wPhoto" accept="image/*" capture="environment">
+      
+      <button class="btn" onclick="addWorker()">Add / जोड़ें</button>
+    </div>
+
+    <div id="labourList"></div>
+  </section>
+
+  <!-- ATTENDANCE TAB -->
+  <section id="sec-attendance" class="hidden">
+    <div class="card">
+      <h3>Daily Attendance</h3>
+      <input type="date" id="attDate">
+      <div id="attList"></div>
+    </div>
+  </section>
+
+  <!-- PAYMENT TAB -->
+  <section id="sec-payment" class="hidden">
+    <div class="card">
+      <h3>Add Payment / Advance</h3>
+      <label>Labour</label>
+      <select id="pWorker"></select>
+      <label>Amount (₹)</label>
+      <input type="number" id="pAmount">
+      <button class="btn" onclick="addPayment()">Payment Save करें</button>
+    </div>
+  </section>
 </div>
 
 <script>
-  let db = JSON.parse(localStorage.getItem('labour_db') || '{"workers":[]}');
+  let db = JSON.parse(localStorage.getItem('labour_db') || '{"workers":[],"attendance":{},"payments":[]}');
+
+  document.getElementById('attDate').valueAsDate = new Date();
 
   function saveDB() {
     localStorage.setItem('labour_db', JSON.stringify(db));
-    renderWorkers();
+    render();
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('sec-' + tab).classList.remove('hidden');
   }
 
   function addWorker() {
     const name = document.getElementById('wName').value.trim();
-    const rate = document.getElementById('wRate').value || 0;
+    const role = document.getElementById('wRole').value;
+    const rate = Number(document.getElementById('wRate').value) || 0;
+    const otRate = Number(document.getElementById('wOTRate').value) || 0;
+    const site = document.getElementById('wSite').value || '-';
     const photoInput = document.getElementById('wPhoto');
 
-    if (!name) return alert('कृपया नाम लिखें!');
+    if (!name) return alert('कृपया नाम दर्ज करें!');
 
-    if (photoInput && photoInput.files && photoInput.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        db.workers.push({ id: Date.now(), name: name, rate: rate, photo: e.target.result });
-        saveDB();
-        document.getElementById('wName').value = '';
-        document.getElementById('wRate').value = '';
-      };
-      reader.readAsDataURL(photoInput.files[0]);
-    } else {
-      db.workers.push({ id: Date.now(), name: name, rate: rate, photo: '' });
+    const save = (photoData) => {
+      db.workers.push({ id: Date.now(), name, role, rate, otRate, site, photo: photoData || '' });
       saveDB();
       document.getElementById('wName').value = '';
       document.getElementById('wRate').value = '';
+      document.getElementById('wOTRate').value = '';
+      document.getElementById('wSite').value = '';
+      if(photoInput) photoInput.value = '';
+      alert('लेबर सफलतापूर्वक जुड़ गया!');
+    };
+
+    if (photoInput && photoInput.files && photoInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => save(e.target.result);
+      reader.readAsDataURL(photoInput.files[0]);
+    } else {
+      save('');
     }
   }
 
-  function renderWorkers() {
-    const list = document.getElementById('labourList');
-    if (!db.workers.length) {
-      list.innerHTML = '<p style="color:gray;">कोई मजदूर नहीं जोड़ा गया</p>';
-      return;
-    }
-    list.innerHTML = db.workers.map(w => {
-      const img = w.photo ? `<img src="${w.photo}" style="width:35px;height:35px;border-radius:50%;margin-right:8px;vertical-align:middle;object-fit:cover;">` : '👤 ';
-      return `<div class="worker"><div>${img}<b>${w.name}</b></div><div>₹${w.rate}</div></div>`;
+  function render() {
+    // Render Labour List
+    const lList = document.getElementById('labourList');
+    lList.innerHTML = db.workers.map(w => {
+      const img = w.photo ? `<img src="${w.photo}" class="avatar">` : `<div class="avatar">👤</div>`;
+      return `<div class="card worker-card">
+        <div class="worker-info">
+          ${img}
+          <div>
+            <b>${w.name}</b> <small>(${w.role})</small><br>
+            <small style="color:gray;">Rate: ₹${w.rate} | Site: ${w.site}</small>
+          </div>
+        </div>
+        <div><b>Balance: ₹${w.rate}</b></div>
+      </div>`;
     }).join('');
+
+    // Select Dropdown for Payment
+    const opts = db.workers.map(w => `<option value="${w.id}">${w.name}</option>`).join('');
+    document.getElementById('pWorker').innerHTML = opts;
   }
 
   function startAI() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return alert('आपके ब्राउज़र में AI वॉइस सपोर्ट नहीं है।');
+    if (!SpeechRecognition) return alert('आपके मोबाइल में AI वॉइस सपोर्ट नहीं है।');
     
     const rec = new SpeechRecognition();
     rec.lang = 'hi-IN';
@@ -98,16 +176,11 @@
     rec.onresult = (e) => {
       const text = e.results[0][0].transcript;
       document.getElementById('aiStatus').innerText = 'आपने कहा: "' + text + '"';
-      alert('AI ने सुना: ' + text);
-    };
-
-    rec.onerror = () => {
-      document.getElementById('aiStatus').innerText = "आवाज समझ नहीं आई, फिर से कोशिश करें।";
+      alert('AI ने रिकॉर्ड किया: ' + text);
     };
   }
 
-  renderWorkers();
+  render();
 </script>
-
 </body>
 </html>
