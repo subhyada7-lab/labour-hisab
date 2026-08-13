@@ -39,6 +39,12 @@ footer{text-align:center;color:#8a94a6;font-size:11px;padding:20px}
     <div><h1>Labour Hisab</h1><div class="sub" id="subtitle">Attendance • Work • Payment • Balance</div></div>
     <button class="lang" onclick="toggleLang()" id="langBtn">हिंदी</button>
   </div>
+ <div style="text-align: center; margin: 15px 0;">
+  <button id="aiMicBtn" onclick="startAIVoice()" style="background: #2563eb; color: white; border: none; padding: 10px 18px; border-radius: 20px; font-weight: bold; cursor: pointer;">
+    🎙️ AI बोलकर हाजिरी लगाएँ
+  </button>
+  <p id="aiStatus" style="font-size: 13px; color: #666; margin-top: 5px;"></p>
+ </div>
   <nav>
     <button class="active" data-page="home" onclick="go('home',this)">Home</button>
     <button data-page="labour" onclick="go('labour',this)">Labour</button>
@@ -229,6 +235,23 @@ async function installApp(){if(!deferredPrompt)return alert('Open this website i
 function renderAll(){applyLang();renderHome();renderWorkers();renderAttendance();renderPayments();renderReport();renderSettings()}
 renderAll();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js');
+function startAIVoice() {
+  const status = document.getElementById('aiStatus');
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    alert("आपका ब्राउज़र वॉइस सपोर्ट नहीं करता। Chrome का उपयोग करें।");
+    return;
+  }
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'hi-IN';
+  recognition.onstart = function() { status.innerText = "🎙️ सुन रहा हूँ... बोलिए"; };
+  recognition.onspeechend = function() { status.innerText = "Processing..."; recognition.stop(); };
+  recognition.onresult = function(event) {
+    const text = event.results[0][0].transcript;
+    alert(`कमांड मिली: ${text}`);
+  };
+  recognition.start()
+  }
 </script>
 </body>
 </html>
