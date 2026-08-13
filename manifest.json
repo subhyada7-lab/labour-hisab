@@ -1,1 +1,20 @@
-{"name":"Labour Hisab Pro","short_name":"Labour Hisab","start_url":"./","display":"standalone","background_color":"#f4f7fb","theme_color":"#075bd6","description":"Professional Hindi-English construction workforce, attendance and payment management."}
+{
+  "short_name": "Labour Hisab",
+  "name": "Labour Hisab App",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "display": "standalone"
+}
