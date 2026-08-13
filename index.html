@@ -77,16 +77,23 @@ footer{text-align:center;color:#8a94a6;font-size:11px;padding:20px}
 <section id="labour" class="hidden">
   <div class="card">
     <h3 data-en="Add Labour / Mistri" data-hi="मजदूर / मिस्त्री जोड़ें">Add Labour / Mistri</h3>
-    <label data-en="Name" data-hi="नाम">Name</label><input id="wName" placeholder="e.g. Sanjo Kumar">
+    <label data-en="Name" data-hi="नाम">Name</label>
+    <input type="text" id="wName">
     <label data-en="Work Type" data-hi="काम">Work Type</label>
-    <select id="wRole"><option>Mistri / मिस्त्री</option><option>Labour / लेबर</option><option>Helper / हेल्पर</option><option>Other / अन्य</option></select>
-    <label data-en="Daily Rate (₹)" data-hi="दिहाड़ी (₹)">Daily Rate (₹)</label><input id="wRate" type="number" value="650">
-    <label data-en="OT Rate / hour (₹)" data-hi="OT रेट / घंटा (₹)">OT Rate / hour (₹)</label><input id="wOT" type="number" value="100">
-    <label data-en="Site" data-hi="साइट">Site</label><input id="wSite" placeholder="Site 1">
-    <button class="primary" onclick="addWorker()" data-en="Save Labour" data-hi="मजदूर सेव करें">Save Labour</button>
+    <select id="wRole"><option>Mistri / मिस्त्री</option><option>Labour / लेबर</option></select>
+    <label data-en="Daily Rate (₹)" data-hi="दिहाड़ी रेट (₹)">Daily Rate (₹)</label>
+    <input type="number" id="wRate">
+    <label data-en="OT Rate / hour (₹)" data-hi="ओवरटाइम रेट / घंटा (₹)">OT Rate / hour (₹)</label>
+    <input type="number" id="wOTRate">
+    <label data-en="Site" data-hi="साइट">Site</label>
+    <input type="text" id="wSite">
+    <label>📷 लेबर फोटो</label>
+    <input type="file" id="wPhoto" accept="image/*" capture="environment" style="width:100%; padding:8px; margin:8px 0; border:1px solid #ccc; border-radius:8px;">
+    <button class="primary" onclick="addWorker()">Add / जोड़ें</button>
   </div>
   <div id="labourList"></div>
 </section>
+  
 
 <section id="attendance" class="hidden">
   <div class="card">
