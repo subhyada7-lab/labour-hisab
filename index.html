@@ -193,11 +193,13 @@ function paid(wid){return db.payments.filter(p=>p.wid===wid).reduce((a,p)=>a+p.a
 function renderWorkers(){
   $('labourList').innerHTML=db.workers.length?db.workers.map(w=>{
     const s=stats(w), bal=earned(w)-paid(w.id);
-    return `<div class="card worker"><div class="who"><div class="avatar">${esc(w.name[0]||'L')}</div><div><b>${esc(w.name)}</b> <span class="pill">${esc(w.role)}</span><div class="muted">${esc(w.site||'No site')} • ${money(w.rate)}/day • ${s.days} days</div></div></div><div class="actions"><div class="money">${money(Math.max(0,bal))}</div><button class="danger" onclick="delWorker(${w.id})">Delete</button></div></div>`
-  }).join(''):'<div class="card empty">No labour added yet.</div>';
-  const opts=db.workers.map(w=>`<option value="${w.id}">${esc(w.name)} — ${esc(w.role)}</option>`).join('');
+    const avatar = w.photo ? `<img src="${w.photo}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:8px;">` : '👤 ';
+    return `<div class="card worker"><div><b>${avatar}${esc(w.name)}</b> <small>(${esc(w.role||'')})</small><div>Rate: ${money(w.rate)} | Site: ${esc(w.site||'-')}</div></div><div>Balance: <b>${money(bal)}</b></div></div>`;
+  }).join(''):'<div class="card empty">No labour added</div>';
+  const opts=db.workers.map(w=>`<option value="${w.id}">${esc(w.name)}</option>`).join('');
   $('pWorker').innerHTML=opts;$('rWorker').innerHTML=opts;
 }
+  
 function renderAttendance(){
   const d=$('attDate').value,items=db.attendance[d]||{};
   if(!db.workers.length){$('attList').innerHTML='<div class="empty">Add labour first.</div>';return}
