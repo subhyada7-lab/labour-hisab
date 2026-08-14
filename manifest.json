@@ -1,11 +1,23 @@
 {
-  "name": "Labour Hisab — All-in-One",
-  "short_name": "Labour Hisab",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#f4f7fb",
-  "theme_color": "#1769e0",
+  "name": "Labour Hisab Pro",
+  "short_name": "LabourHisab",
   "description": "Daily attendance register, cashbook, labour/staff, payments, sites and offline backup.",
-  "orientation": "any",
-  "scope": "./"
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#061e4d",
+  "theme_color": "#075bd6",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
