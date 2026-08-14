@@ -1,158 +1,99 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1769e0">
-<meta name="description" content="Labour Hisab — All-in-One attendance, cashbook, labour and site management.">
-<title>Labour Hisab — All-in-One</title>
-<link rel="manifest" href="manifest.json">
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#1769e0"><link rel="manifest" href="manifest.json">
+<title>Labour Hisab Pro</title>
 <style>
-:root{--blue:#1769e0;--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#6b7280;--line:#e5e7eb;--ok:#16834b;--danger:#c62828}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text)}
-header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);padding:12px 16px}
-.brand{max-width:1250px;margin:auto;display:flex;align-items:center;gap:12px}.brand img{width:48px;height:48px;border-radius:12px}.brand h1{font-size:20px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}
-nav{max-width:1250px;margin:10px auto 0;display:flex;gap:7px;overflow:auto;padding-bottom:2px}nav button{border:1px solid var(--line);background:#fff;padding:9px 13px;border-radius:10px;white-space:nowrap;font-weight:650}nav button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
-main{max-width:1250px;margin:18px auto;padding:0 16px}.hero{background:linear-gradient(135deg,#1769e0,#4d8df0);color:#fff;border-radius:18px;padding:22px;margin-bottom:16px}.hero h2{margin:0 0 7px}.hero p{margin:0;opacity:.92}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:0 2px 8px rgba(20,30,50,.04)}.card h3{margin:0 0 6px;font-size:15px}.num{font-size:25px;font-weight:800}.muted{color:var(--muted);font-size:13px}
-.section{margin-top:16px}.section h2{font-size:18px}
-.actions{display:flex;flex-wrap:wrap;gap:9px}.actions button,button.primary{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:11px 14px;font-weight:700}button.secondary{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 13px;font-weight:650}
-.form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.form input,.form select,.form textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff}.full{grid-column:1/-1}
-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);font-size:13px}
-.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#eaf2ff;color:var(--blue);font-size:12px;font-weight:700}
-.hidden{display:none}
-footer{max-width:1250px;margin:25px auto;padding:16px;color:var(--muted);font-size:12px;text-align:center}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.grid{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.hero{padding:18px}main{padding:0 11px}}
-</style>
-</head>
-<body>
-<header>
-  <div class="brand">
-    <img src="icon-192.png" alt="Labour Hisab logo">
-    <div><h1>Labour Hisab</h1><p>All-in-One • Attendance • Cashbook • Labour • Sites</p></div>
-  </div>
-  <nav id="nav">
-    <button data-page="dashboard" class="active">Dashboard</button>
-    <button data-page="workers">Workers</button>
-    <button data-page="attendance">Attendance</button>
-    <button data-page="payment">Payment</button>
-    <button data-page="reports">Reports</button>
-    <button data-page="sites">Sites</button>
-    <button data-page="backup">Backup</button>
-  </nav>
-</header>
+:root{--b:#1769e0;--bg:#f4f7fb;--c:#fff;--t:#182235;--m:#667085;--l:#e4e7ec;--g:#16834b;--r:#c62828}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--l);padding:10px 14px}.top{max-width:1250px;margin:auto;display:flex;align-items:center;gap:10px}.logo{width:46px;height:46px;border-radius:13px}.brand{font-weight:850;font-size:20px}.sub{font-size:11px;color:var(--m)}
+nav{max-width:1250px;margin:8px auto 0;display:flex;gap:7px;overflow:auto}nav button{border:1px solid var(--l);background:#fff;border-radius:10px;padding:9px 12px;white-space:nowrap;font-weight:750}nav button.on{background:var(--b);color:#fff;border-color:var(--b)}
+main{max-width:1250px;margin:18px auto;padding:0 14px}.hide{display:none!important}.hero{background:linear-gradient(135deg,#1769e0,#5a93f4);color:#fff;border-radius:18px;padding:22px;margin-bottom:14px}.hero h1{margin:0 0 5px}.hero p{margin:0;opacity:.92}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#fff;border:1px solid var(--l);border-radius:15px;padding:14px}.stat small{color:var(--m)}.stat strong{display:block;font-size:23px;margin-top:6px}
+.card{background:#fff;border:1px solid var(--l);border-radius:15px;padding:15px;margin-top:14px}.card h2{margin:0 0 12px;font-size:18px}.list{display:grid;gap:9px}.item{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--l);border-radius:12px;padding:12px;background:#fff}
+.muted{color:var(--m);font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.form{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.form>*{width:100%;padding:11px;border:1px solid var(--l);border-radius:10px}.full{grid-column:1/-1}
+.btn{border:0;border-radius:10px;padding:10px 13px;font-weight:750;background:var(--b);color:#fff}.btn.alt{background:#fff;color:var(--t);border:1px solid var(--l)}.btn.green{background:var(--g)}
+.badge{padding:4px 8px;border-radius:999px;background:#eaf2ff;color:var(--b);font-size:11px;font-weight:800}
+.avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#eaf2ff}.person{display:grid;grid-template-columns:44px 1fr auto;gap:9px;align-items:center}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--l);font-size:13px}
+.modalbg{position:fixed;inset:0;background:#0008;z-index:100;display:flex;align-items:center;justify-content:center;padding:15px}.modal{background:#fff;border-radius:18px;padding:20px;width:min(560px,100%);max-height:90vh;overflow:auto}.modal h2{margin-top:0}
+.authLogo{display:block;margin:auto;width:70px;height:70px;border-radius:18px}.photo{font-size:12px}.danger{color:var(--r)}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:span 2}}
+@media(max-width:520px){.form,.grid{grid-template-columns:1fr}.hero{padding:18px}}
+</style></head><body>
+
+<div id="auth" class="modalbg"><div class="modal">
+<img src="icon-192.png" class="authLogo"><h2 id="authTitle">Sign in to Labour Hisab Pro</h2>
+<div id="loginBox">
+<input id="loginId" placeholder="Email / Mobile" style="width:100%;padding:11px;border:1px solid var(--l);border-radius:10px;margin:5px 0">
+<input id="loginPass" type="password" placeholder="Password" style="width:100%;padding:11px;border:1px solid var(--l);border-radius:10px;margin:5px 0">
+<button class="btn" style="width:100%;margin-top:8px" onclick="login()">Sign In</button>
+<button class="btn alt" style="width:100%;margin-top:8px" onclick="signupMode()">Create New Account</button></div>
+<div id="signupBox" class="hide"><div class="form">
+<input id="suName" placeholder="Your name"><input id="suSurname" placeholder="Your surname"><input id="suCompany" class="full" placeholder="Your company">
+<input id="suId" placeholder="Email / Mobile"><input id="suPass" type="password" placeholder="Create new password"><input id="suConfirm" type="password" placeholder="Confirm password">
+</div><h3>Default fixed daily rates</h3><div class="form">
+<input id="rateLabour" type="number" value="500" placeholder="Worker salary/day">
+<input id="rateMistri" type="number" value="1000" placeholder="Head worker / Mistri/day">
+<input id="rateManager" type="number" value="2000" placeholder="Manager/day">
+<input id="rateHead" type="number" value="2000" placeholder="Head electrician/carpenter/painter/day">
+<input id="rateTrade" type="number" value="500" placeholder="Electrician/carpenter/painter worker/day">
+</div><button class="btn" style="margin-top:10px" onclick="signup()">Create Account</button> <button class="btn alt" onclick="loginMode()">Back</button>
+<p class="muted">This offline build keeps account/data on this device. Cross-device cloud login needs a secure online backend.</p></div>
+</div></div>
+
+<header><div class="top"><img class="logo" src="icon-192.png"><div><div class="brand">Labour Hisab Pro</div><div class="sub" id="companyName">Projects • Attendance • Payables • Liabilities</div></div></div>
+<nav id="nav"><button class="on" data-page="dashboard">Dashboard</button><button data-page="projects">Total Projects</button><button data-page="completed">Projects Completed</button><button data-page="profile">Profile</button><button data-page="backup">Backup</button></nav></header>
 
 <main>
-<section id="dashboard" class="page">
-  <div class="hero"><h2>Daily Attendance Register & Cashbook</h2><p>Manage labour, staff, salary, site expenses and daily cash — offline first.</p></div>
-  <div class="grid">
-    <div class="card"><h3>Workers</h3><div class="num" id="statWorkers">0</div><span class="muted">Labour & staff</span></div>
-    <div class="card"><h3>Today Attendance</h3><div class="num" id="statAtt">0</div><span class="muted">Marked today</span></div>
-    <div class="card"><h3>Payments</h3><div class="num" id="statPay">₹0</div><span class="muted">Recorded</span></div>
-    <div class="card"><h3>Expenses</h3><div class="num" id="statExp">₹0</div><span class="muted">Recorded</span></div>
-  </div>
-  <div class="section card"><h2>Quick actions</h2><div class="actions">
-    <button class="primary" onclick="go('attendance')">Mark Attendance</button>
-    <button class="primary" onclick="go('payment')">Add Payment</button>
-    <button class="secondary" onclick="go('workers')">Add Worker</button>
-    <button class="secondary" onclick="go('sites')">Add Site Expense</button>
-  </div></div>
-</section>
+<section id="dashboard" class="page"><div class="hero"><h1>All-in-One Daily Project Hisab</h1><p>Projects, workers, attendance, payments, income and expenses in one place.</p></div>
+<div class="stats"><div class="stat"><small>Total Projects</small><strong id="totalProjects">0</strong></div><div class="stat"><small>Projects Completed</small><strong id="totalCompleted">0</strong></div><div class="stat"><small>Overall Income</small><strong id="income">₹0</strong></div><div class="stat"><small>Overall Expenses</small><strong id="expense">₹0</strong></div><div class="stat"><small>Overall Payables</small><strong id="payables">₹0</strong></div><div class="stat"><small>Overall Liabilities</small><strong id="liabilities">₹0</strong></div></div>
+<div class="card"><h2>Quick actions</h2><div class="grid"><button class="btn" onclick="openNewProject()">+ New Project</button><button class="btn alt" onclick="page('projects')">Open Projects</button></div></div></section>
 
-<section id="workers" class="page hidden">
-  <div class="card"><h2>Workers & Staff</h2>
-    <div class="form">
-      <input id="wName" placeholder="Name / नाम">
-      <select id="wType"><option>Labour</option><option>Mistri</option><option>Helper</option><option>Staff</option><option>Driver</option><option>Other</option></select>
-      <input id="wPhone" placeholder="Mobile">
-      <input id="wRate" type="number" placeholder="Daily salary">
-      <button class="primary full" onclick="addWorker()">Add Worker</button>
-    </div>
-  </div>
-  <div class="section card"><table><thead><tr><th>Name</th><th>Type</th><th>Mobile</th><th>Rate</th></tr></thead><tbody id="workersTable"></tbody></table></div>
-</section>
+<section id="projects" class="page hide"><div class="card"><h2>Total Projects</h2><div id="projectList" class="list"></div><button class="btn" onclick="openNewProject()">+ Add Project</button></div></section>
+<section id="completed" class="page hide"><div class="card"><h2>Projects Completed</h2><div id="completedList" class="list"></div></div></section>
 
-<section id="attendance" class="page hidden">
-  <div class="card"><h2>Attendance</h2><div class="form">
-    <select id="aWorker"></select><select id="aStatus"><option>Present</option><option>Absent</option><option>Half Day</option></select>
-    <input id="aDate" type="date"><input id="aOT" type="number" placeholder="OT hours">
-    <button class="primary full" onclick="addAttendance()">Save Attendance</button>
-  </div></div>
-  <div class="section card"><table><thead><tr><th>Date</th><th>Worker</th><th>Status</th><th>OT</th></tr></thead><tbody id="attTable"></tbody></table></div>
-</section>
+<section id="project" class="page hide"><div class="card"><button class="btn alt" onclick="page('projects')">← Back</button><h2 id="projectName"></h2><div id="projectInfo"></div><div class="grid"><button class="btn" onclick="editProject()">Client / Project Details</button><button class="btn alt" onclick="completeProject()">Mark Completed</button></div></div>
+<div class="card"><h2>Manager</h2><div id="managerBox"></div><button class="btn alt" onclick="setManager()">Set Manager</button></div>
+<div class="card"><h2>Workers</h2><div class="grid"><button class="btn" onclick="addWorker()">+ Add Worker</button><button class="btn alt" onclick="addIncomeExpense('income')">+ Income</button></div><div id="workers" class="list" style="margin-top:10px"></div></div>
+<div class="card"><h2>Attendance — Today</h2><div id="attendance" class="list"></div></div>
+<div class="card"><h2>Payables</h2><div id="payableList" class="list"></div></div>
+<div class="card"><h2>Liabilities</h2><div id="liabilityList" class="list"></div></div>
+<div class="card"><h2>Project Cashbook</h2><div class="grid"><button class="btn" onclick="addIncomeExpense('income')">Add Income</button><button class="btn alt" onclick="addIncomeExpense('expense')">Add Expense</button></div><div id="cashbook"></div></div></section>
 
-<section id="payment" class="page hidden">
-  <div class="card"><h2>Payment & Cashbook</h2><div class="form">
-    <select id="pWorker"></select><input id="pAmount" type="number" placeholder="Amount ₹">
-    <select id="pKind"><option>Salary</option><option>Advance</option><option>Other</option></select>
-    <input id="pDate" type="date"><input id="pNote" placeholder="Note">
-    <button class="primary full" onclick="addPayment()">Save Payment</button>
-  </div></div>
-  <div class="section card"><table><thead><tr><th>Date</th><th>Worker</th><th>Type</th><th>Amount</th><th>Note</th></tr></thead><tbody id="payTable"></tbody></table></div>
-</section>
-
-<section id="reports" class="page hidden">
-  <div class="card"><h2>Reports</h2><p class="muted">Your data stays on this device until you export a backup.</p>
-  <div class="actions"><button class="primary" onclick="downloadReport()">Download Report</button><button class="secondary" onclick="window.print()">Print / Save PDF</button></div></div>
-  <div class="section grid">
-    <div class="card"><h3>Total Workers</h3><div class="num" id="rWorkers">0</div></div>
-    <div class="card"><h3>Total Payments</h3><div class="num" id="rPayments">₹0</div></div>
-    <div class="card"><h3>Total Attendance</h3><div class="num" id="rAttendance">0</div></div>
-    <div class="card"><h3>Total Site Expenses</h3><div class="num" id="rExpenses">₹0</div></div>
-  </div>
-</section>
-
-<section id="sites" class="page hidden">
-  <div class="card"><h2>Sites & Site Expenses</h2><div class="form">
-    <input id="sName" placeholder="Site name / साइट">
-    <input id="sAmount" type="number" placeholder="Expense ₹">
-    <input id="sDate" type="date"><input id="sNote" placeholder="Expense note">
-    <button class="primary full" onclick="addSite()">Save Site Expense</button>
-  </div></div>
-  <div class="section card"><table><thead><tr><th>Site</th><th>Date</th><th>Amount</th><th>Note</th></tr></thead><tbody id="siteTable"></tbody></table></div>
-</section>
-
-<section id="backup" class="page hidden">
-  <div class="card"><h2>Backup & Restore</h2><p class="muted">Create a backup file regularly. This protects your data if you change phones or clear app storage.</p>
-  <div class="actions"><button class="primary" onclick="backup()">Download Backup</button><button class="secondary" onclick="document.getElementById('restore').click()">Restore Backup</button><input id="restore" type="file" accept=".json" hidden onchange="restore(this.files[0])"></div></div>
-</section>
+<section id="profile" class="page hide"><div class="card"><h2>My Profile</h2><div id="profile"></div></div></section>
+<section id="backup" class="page hide"><div class="card"><h2>Backup & Restore</h2><p class="muted">Download a backup regularly. Restore it on another browser/device when needed.</p><button class="btn" onclick="backup()">Download Backup</button> <button class="btn alt" onclick="restoreInput.click()">Restore Backup</button><input id="restoreInput" type="file" accept=".json" hidden onchange="restore(this.files[0])"></div></section>
 </main>
-<footer>Labour Hisab • Offline-first • Privacy-friendly • Built for contractors, shops & small businesses</footer>
 
 <script>
-const KEY='labour_hisab_all_in_one_v1';
-let db=JSON.parse(localStorage.getItem(KEY)||'{"workers":[],"attendance":[],"payments":[],"sites":[]}');
-const save=()=>{localStorage.setItem(KEY,JSON.stringify(db));render()};
-const today=()=>new Date().toISOString().slice(0,10);
-['aDate','pDate','sDate'].forEach(id=>document.getElementById(id).value=today());
-
-function go(page){document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));document.getElementById(page).classList.remove('hidden');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));render()}
-document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
-
-function addWorker(){let n=wName.value.trim();if(!n)return alert('Enter worker name');db.workers.push({id:Date.now(),name:n,type:wType.value,phone:wPhone.value.trim(),rate:+wRate.value||0});wName.value=wPhone.value=wRate.value='';save()}
-function addAttendance(){if(!aWorker.value)return alert('Add a worker first');db.attendance.push({date:aDate.value,worker:+aWorker.value,status:aStatus.value,ot:+aOT.value||0});aOT.value='';save()}
-function addPayment(){if(!pWorker.value||!(+pAmount.value))return alert('Select worker and amount');db.payments.push({date:pDate.value,worker:+pWorker.value,kind:pKind.value,amount:+pAmount.value,note:pNote.value});pAmount.value=pNote.value='';save()}
-function addSite(){if(!sName.value.trim()||!(+sAmount.value))return alert('Enter site and amount');db.sites.push({name:sName.value.trim(),date:sDate.value,amount:+sAmount.value,note:sNote.value});sAmount.value=sNote.value='';save()}
-
-function name(id){return db.workers.find(w=>w.id===+id)?.name||'—'}
-function render(){
- statWorkers.textContent=rWorkers.textContent=db.workers.length;
- statAtt.textContent=rAttendance.textContent=db.attendance.filter(a=>a.date===today()).length;
- let pay=db.payments.reduce((s,x)=>s+x.amount,0), exp=db.sites.reduce((s,x)=>s+x.amount,0);
- statPay.textContent=rPayments.textContent='₹'+pay.toLocaleString('en-IN');
- statExp.textContent=rExpenses.textContent='₹'+exp.toLocaleString('en-IN');
- aWorker.innerHTML=pWorker.innerHTML='<option value="">Select worker</option>'+db.workers.map(w=>`<option value="${w.id}">${w.name} — ${w.type}</option>`).join('');
- workersTable.innerHTML=db.workers.map(w=>`<tr><td>${esc(w.name)}</td><td><span class="badge">${esc(w.type)}</span></td><td>${esc(w.phone)}</td><td>₹${w.rate.toLocaleString('en-IN')}</td></tr>`).join('');
- attTable.innerHTML=db.attendance.slice().reverse().map(a=>`<tr><td>${a.date}</td><td>${esc(name(a.worker))}</td><td>${a.status}</td><td>${a.ot||0}h</td></tr>`).join('');
- payTable.innerHTML=db.payments.slice().reverse().map(p=>`<tr><td>${p.date}</td><td>${esc(name(p.worker))}</td><td>${p.kind}</td><td>₹${p.amount.toLocaleString('en-IN')}</td><td>${esc(p.note||'')}</td></tr>`).join('');
- siteTable.innerHTML=db.sites.slice().reverse().map(s=>`<tr><td>${esc(s.name)}</td><td>${s.date}</td><td>₹${s.amount.toLocaleString('en-IN')}</td><td>${esc(s.note||'')}</td></tr>`).join('');
-}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function backup(){let blob=new Blob([JSON.stringify({app:'Labour Hisab',version:1,exportedAt:new Date().toISOString(),data:db},null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Labour-Hisab-Backup-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
-function restore(file){if(!file)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.data?.workers)throw 0;if(!confirm('Replace current data with this backup?'))return;db=x.data;save();alert('Backup restored successfully.')}catch(e){alert('Invalid backup file')}};r.readAsText(file)}
-function downloadReport(){let rows=[['Workers','Type','Mobile','Rate']];db.workers.forEach(w=>rows.push([w.name,w.type,w.phone,w.rate]));let csv=rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(',')).join('\\n');let b=new Blob([csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Labour-Hisab-Report-'+today()+'.csv';a.click();URL.revokeObjectURL(a.href)}
+const KEY='labour_hisab_pro_new_v1';
+let D=JSON.parse(localStorage.getItem(KEY)||'null')||{account:null,projects:[],completed:[],current:null};
+const save=()=>localStorage.setItem(KEY,JSON.stringify(D)), money=n=>'₹'+Math.round(n||0).toLocaleString('en-IN'), today=()=>new Date().toISOString().slice(0,10);
+function page(id){document.querySelectorAll('.page').forEach(x=>x.classList.add('hide'));document.getElementById(id).classList.remove('hide');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.page===id));render()}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>page(b.dataset.page));
+function signupMode(){loginBox.classList.add('hide');signupBox.classList.remove('hide');authTitle.textContent='Create New Account'}
+function loginMode(){loginBox.classList.remove('hide');signupBox.classList.add('hide');authTitle.textContent='Sign in to Labour Hisab Pro'}
+function signup(){let vals=[suName.value,suSurname.value,suCompany.value,suId.value,suPass.value];if(vals.some(x=>!x.trim())||suPass.value!==suConfirm.value)return alert('Please fill all details and confirm password.');D.account={name:suName.value.trim(),surname:suSurname.value.trim(),company:suCompany.value.trim(),id:suId.value.trim(),password:suPass.value,rates:{labour:+rateLabour.value||500,mistri:+rateMistri.value||1000,manager:+rateManager.value||2000,head:+rateHead.value||2000,trade:+rateTrade.value||500}};save();auth.classList.add('hide');render()}
+function login(){if(!D.account)return signupMode();if(loginId.value!==D.account.id||loginPass.value!==D.account.password)return alert('Wrong login details.');auth.classList.add('hide');render()}
+function openNewProject(){let name=prompt('Project name');if(!name)return;let p={id:Date.now(),name,client:{name:'',address:'',phone:''},manager:'',workers:[],cash:[]};D.projects.push(p);D.current=p.id;save();page('project')}
+function cur(){return D.projects.find(p=>p.id===D.current)}
+function editProject(){let p=cur();let n=prompt('Project name',p.name);if(n)p.name=n;let c=prompt('Client name',p.client.name);if(c!==null)p.client.name=c;let a=prompt('Client address',p.client.address);if(a!==null)p.client.address=a;let ph=prompt('Client phone',p.client.phone);if(ph!==null)p.client.phone=ph;save();render()}
+function setManager(){let p=cur(),n=prompt('Manager name',p.manager);if(n!==null){p.manager=n;save();render()}}
+function addWorker(){let p=cur();let n=prompt('Worker name');if(!n)return;let roles=['Labour','Mistri','Manager','Head Electrician/Carpenter/Painter','Electrician/Carpenter/Painter Worker'];let role=prompt('Role: Labour / Mistri / Manager / Head / Trade', 'Labour')||'Labour';let rate=role.toLowerCase().includes('mistri')?D.account.rates.mistri:role.toLowerCase().includes('manager')?D.account.rates.manager:role.toLowerCase().includes('head')?D.account.rates.head:role.toLowerCase().includes('trade')?D.account.rates.trade:D.account.rates.labour;p.workers.push({id:Date.now(),name:n,role,rate,att:{},paid:[],adv:[]});save();render()}
+function att(w){return w.att[today()]||'Absent'}
+function setAtt(id,v){let w=cur().workers.find(x=>x.id===id);w.att[today()]=v;save();render()}
+function accrued(w){return Object.values(w.att).reduce((s,v)=>s+(v==='Present'?w.rate:v==='Half Day'?w.rate/2:0),0)}
+function paid(w){return w.paid.reduce((s,x)=>s+x.amount,0)}
+function advance(w){return w.adv.reduce((s,x)=>s+x.amount,0)}
+function outstanding(w){return Math.max(0,accrued(w)-paid(w)-advance(w))}
+function dueToday(w){let base=att(w)==='Present'?w.rate:att(w)==='Half Day'?w.rate/2:0;let adv=advance(w);return Math.max(0,base-adv)}
+function pay(id){let w=cur().workers.find(x=>x.id===id),due=dueToday(w);let amount=+prompt('Amount paid',due)||0;if(amount<=0)return;w.paid.push({date:today(),amount});save();render()}
+function adv(id){let w=cur().workers.find(x=>x.id===id),days=+prompt('Future days covered',2)||0;let amount=days*w.rate;if(amount<=0)return;w.adv.push({date:today(),days,amount});save();render()}
+function addIncomeExpense(type){let p=cur(),amount=+prompt((type==='income'?'Income':'Expense')+' amount ₹');if(!amount)return;let note=prompt('Note')||'';p.cash.push({type,amount,note,date:today()});save();render()}
+function completeProject(){let p=cur();if(!confirm('Move this project to Projects Completed?'))return;D.projects=D.projects.filter(x=>x.id!==p.id);D.completed.push(p);D.current=null;save();page('projects')}
+function render(){if(!D.account){auth.classList.remove('hide');return}companyName.textContent=D.account.company+' • '+D.account.name+' '+D.account.surname;let all=D.projects.concat(D.completed),inc=0,exp=0,pay=0,liab=0;all.forEach(p=>p.cash.forEach(x=>x.type==='income'?inc+=x.amount:exp+=x.amount));D.projects.forEach(p=>p.workers.forEach(w=>{pay+=dueToday(w);liab+=outstanding(w)}));totalProjects.textContent=D.projects.length;totalCompleted.textContent=D.completed.length;income.textContent=money(inc);expense.textContent=money(exp);payables.textContent=money(pay);liabilities.textContent=money(liab);projectList.innerHTML=D.projects.map(p=>`<div class="item"><div><b>${e(p.name)}</b><div class="muted">${e(p.client.name||'Client not added')}</div></div><button class="btn" onclick="D.current=${p.id};save();page('project')">Open</button></div>`).join('')||'<span class="muted">No projects yet.</span>';completedList.innerHTML=D.completed.map(p=>`<div class="item"><b>${e(p.name)}</b><span class="badge">Completed</span></div>`).join('')||'<span class="muted">No completed projects.</span>';profile.innerHTML=`<p><b>Name:</b> ${e(D.account.name+' '+D.account.surname)}</p><p><b>Company:</b> ${e(D.account.company)}</p><p><b>Login:</b> ${e(D.account.id)}</p><p><b>Fixed rates:</b> Labour ${money(D.account.rates.labour)} • Mistri ${money(D.account.rates.mistri)} • Manager ${money(D.account.rates.manager)}</p>`;let p=cur();if(!p)return;projectName.textContent=p.name;projectInfo.innerHTML=`<p><b>Client:</b> ${e(p.client.name||'—')}<br><b>Address:</b> ${e(p.client.address||'—')}<br><b>Phone:</b> ${e(p.client.phone||'—')}</p>`;managerBox.innerHTML=p.manager?`<b>${e(p.manager)}</b>`:'<span class="muted">No manager set</span>';workers.innerHTML=p.workers.map(w=>`<div class="item person"><img class="avatar" src="icon-192.png"><div><b>${e(w.name)}</b><div class="muted">${e(w.role)} • ${money(w.rate)}/day</div></div><button class="btn alt" onclick="adv(${w.id})">Advance</button></div>`).join('')||'<span class="muted">No workers.</span>';attendance.innerHTML=p.workers.map(w=>`<div class="item"><div><b>${e(w.name)}</b><div class="muted">${e(w.role)}</div></div><div><button class="btn alt" onclick="setAtt(${w.id},'Present')">P</button> <button class="btn alt" onclick="setAtt(${w.id},'Half Day')">HF</button> <button class="btn alt" onclick="setAtt(${w.id},'Absent')">A</button> <span class="badge">${att(w)}</span></div></div>`).join('');payableList.innerHTML=p.workers.map(w=>`<div class="item"><div><b>${e(w.name)}</b><div class="muted">${att(w)}</div></div><div><b>${money(dueToday(w))}</b> <button class="btn green" onclick="pay(${w.id})">Paid</button></div></div>`).join('');liabilityList.innerHTML=p.workers.map(w=>`<div class="item"><div><b>${e(w.name)}</b><div class="muted">Outstanding</div></div><b>${money(outstanding(w))}</b></div>`).join('');cashbook.innerHTML=p.cash.slice().reverse().map(x=>`<p>${x.date} — ${x.type==='income'?'<b>Income</b>':'<b>Expense</b>'} — ${money(x.amount)} — ${e(x.note)}</p>`).join('')||'<span class="muted">No entries.</span>'}
+function e(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function backup(){let b=new Blob([JSON.stringify(D,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Labour-Hisab-Backup-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
+function restore(f){if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.account||!x.projects)throw 0;if(confirm('Replace current data?')){D=x;save();render();alert('Backup restored')}}catch(_){alert('Invalid backup')}};r.readAsText(f)}
 render();
-</script>
-</body>
-</html>
+</script></body></html>

@@ -1,0 +1,12 @@
+GITHUB UPLOAD
+Upload these runtime files:
+1. index.html
+2. manifest.json
+3. sw.js
+4. icon-192.png
+5. icon-512.png
+6. privacy-policy.html
+
+README.txt and SECURITY_NOTE.txt are documentation and are optional.
+Do not rename index.html.
+After uploading, open the GitHub Pages URL and hard-refresh once.
