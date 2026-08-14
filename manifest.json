@@ -1,9 +1,11 @@
 {
-  "name": "Labour Hisab Pro - Offline",
+  "name": "Labour Hisab — All-in-One",
   "short_name": "Labour Hisab",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f4f7fb",
-  "theme_color": "#075bd6",
-  "description": "Professional Hindi-English construction workforce, attendance and payment management."
+  "theme_color": "#1769e0",
+  "description": "Daily attendance register, cashbook, labour/staff, payments, sites and offline backup.",
+  "orientation": "any",
+  "scope": "./"
 }

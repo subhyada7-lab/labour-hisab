@@ -1,103 +1,158 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#075bd6"><link rel="manifest" href="manifest.json"><title>Labour Hisab Pro</title><style>
-*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#152238;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}header{position:sticky;top:0;z-index:30;background:linear-gradient(135deg,#061e4d,#0870e8);color:#fff;box-shadow:0 6px 24px #001a4530}.top{max-width:1100px;margin:auto;padding:12px 14px}.brand{display:flex;align-items:center;gap:10px}.logo{width:48px;height:48px;border-radius:15px;background:#fff;display:grid;place-items:center;font-size:27px}.brand h1{margin:0;font-size:20px}.brand small{opacity:.88}.head{display:flex;justify-content:space-between;gap:10px;align-items:center}.headBtns{display:flex;gap:7px}.headBtns button{border:1px solid #ffffff35;background:#ffffff16;color:#fff;border-radius:11px;padding:9px 10px;font-weight:800}nav{display:none}nav button{border:0;background:#ffffff18;color:#fff;padding:9px 12px;border-radius:10px;font-weight:800;white-space:nowrap}nav button.active{background:#fff;color:#075bd6}.wrap{max-width:1100px;margin:auto;padding:14px}.hidden{display:none!important}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.card{background:#fff;border:1px solid #e5eaf2;border-radius:17px;padding:14px;margin-bottom:11px;box-shadow:0 4px 18px #1522380b}.stat{min-height:94px}.muted{color:#6b778c;font-size:12px}.stat b{display:block;font-size:23px;margin-top:6px}.title{display:flex;justify-content:space-between;gap:10px;align-items:center}.title h2,.title h3{margin:0}.btn{border:0;border-radius:11px;padding:10px 13px;font-weight:850}.primary{background:#075bd6;color:#fff}.secondary{background:#eaf2ff;color:#075bd6}.danger{background:#ffe8e8;color:#b42318}.success{background:#e2f7eb;color:#167342}.dark{background:#16243a;color:#fff}.input{width:100%;padding:11px;border:1px solid #d7deea;border-radius:10px;background:#fff;margin:5px 0 10px;outline:none}.input:focus{border-color:#4d8cf0;box-shadow:0 0 0 3px #075bd615}.row{display:flex;gap:9px}.row>*{flex:1}label{font-size:12px;font-weight:850;color:#4e5b70}.assistant{background:linear-gradient(135deg,#071a40,#075bd6);color:#fff}.assistant .muted{color:#d9e7ff}.assistant input{border:0}.cmdrow{display:flex;gap:7px;margin-top:9px}.cmdrow input{flex:1}.msg{background:#fff;color:#172238;border-radius:10px;padding:10px;margin-top:8px}.roles{display:grid;grid-template-columns:repeat(8,1fr);gap:7px}.role{background:#f7faff;border:1px solid #e2e9f4;border-radius:12px;padding:10px 5px;text-align:center;font-size:12px;font-weight:800}.role span{display:block;font-size:21px;margin-bottom:4px}.worker{display:grid;grid-template-columns:64px 1fr auto;gap:11px;align-items:start}.avatar,.avatarText{width:64px;height:64px;border-radius:15px}.avatar{object-fit:cover;border:2px solid #dce7fb}.avatarText{display:grid;place-items:center;background:#e9f1ff;color:#075bd6;font-size:22px;font-weight:900}.pill{display:inline-block;background:#edf4ff;color:#075bd6;border-radius:99px;padding:4px 8px;font-size:11px;font-weight:900}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}.mini{background:#f7f9fc;border-radius:11px;padding:8px}.mini b{display:block;margin-top:3px}.red{color:#b42318}.green{color:#167342}.att{display:grid;grid-template-columns:1fr 62px 62px 62px 62px;gap:5px;align-items:center;border-bottom:1px solid #edf0f5;padding:9px 0}.att button{border:1px solid #d8dfeb;background:#fff;border-radius:8px;padding:8px 3px;font-weight:900}.onP{background:#def6e8!important;color:#167342;border-color:#5abd87!important}.onH{background:#fff0d0!important;color:#805400;border-color:#e2b14c!important}.onA{background:#ffe5e5!important;color:#a51b1b;border-color:#dc6c6c!important}.onO{background:#e8e9ff!important;color:#4237a8;border-color:#7770db!important}.photo{display:flex;gap:10px;align-items:center}.photo input{display:none}.photoBtn{display:inline-block;background:#eaf2ff;color:#075bd6;padding:10px 12px;border-radius:10px;font-weight:850}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:9px;border-bottom:1px solid #edf0f5;text-align:left;font-size:13px}.badge{background:#eef3f9;border-radius:99px;padding:3px 7px;font-size:11px;font-weight:800}.bottom{display:flex;background:#fff;border-top:1px solid #dfe5ee;z-index:40;padding:6px 4px;gap:3px;position:sticky;bottom:0}.empty{text-align:center;color:#718096;padding:28px}.siteCard{border-left:4px solid #075bd6}.progress{height:8px;background:#e9eef6;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:#075bd6}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#172238;color:#fff;padding:10px 15px;border-radius:12px;z-index:80;box-shadow:0 8px 25px #0003}.darkmode body{}.modal{position:fixed;inset:0;background:#0007;z-index:60;display:grid;place-items:center;padding:18px}.modal>div{background:#fff;border-radius:18px;padding:16px;max-width:520px;width:100%;max-height:90vh;overflow:auto}@media(max-width:800px){.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr 1fr}.roles{grid-template-columns:repeat(4,1fr)}}@media(max-width:560px){.wrap{padding:10px}.grid3{grid-template-columns:1fr}.roles{grid-template-columns:repeat(4,1fr)}.worker{grid-template-columns:54px 1fr}.worker>.danger{grid-column:2}.avatar,.avatarText{width:54px;height:54px}.att{grid-template-columns:1fr 50px 50px 50px 50px}.att button{padding:7px 1px}.bottom{position:fixed;bottom:0;left:0;right:0}.bottom button{flex:1;border:0;background:transparent;padding:6px 2px;font-size:10px;font-weight:850;color:#637087}.bottom button.active{color:#075bd6}.wrap{padding-bottom:75px}}
-</style></head><body><header><div class="top"><div class="head"><div class="brand"><div class="logo">👷</div><div><h1>Labour Hisab Pro</h1><small id="tag">Work • Attendance • Payment • Reports</small></div></div><div class="headBtns"><button onclick="toggleLang()">हिं/EN</button><button onclick="toggleTheme()">☾</button><button onclick="localLogout()" id="logoutBtn" style="display:none">Logout</button></div></div><nav id="nav"><button class="active" onclick="show('home',this)">Dashboard</button><button onclick="show('workers',this)">Workers</button><button onclick="show('attendance',this)">Attendance</button><button onclick="show('payment',this)">Payment</button><button onclick="show('report',this)">Reports</button><button onclick="show('sites',this)">Sites</button><button onclick="show('data',this)">Backup</button></nav></div></header>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1769e0">
+<meta name="description" content="Labour Hisab — All-in-One attendance, cashbook, labour and site management.">
+<title>Labour Hisab — All-in-One</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{--blue:#1769e0;--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#6b7280;--line:#e5e7eb;--ok:#16834b;--danger:#c62828}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text)}
+header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);padding:12px 16px}
+.brand{max-width:1250px;margin:auto;display:flex;align-items:center;gap:12px}.brand img{width:48px;height:48px;border-radius:12px}.brand h1{font-size:20px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}
+nav{max-width:1250px;margin:10px auto 0;display:flex;gap:7px;overflow:auto;padding-bottom:2px}nav button{border:1px solid var(--line);background:#fff;padding:9px 13px;border-radius:10px;white-space:nowrap;font-weight:650}nav button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+main{max-width:1250px;margin:18px auto;padding:0 16px}.hero{background:linear-gradient(135deg,#1769e0,#4d8df0);color:#fff;border-radius:18px;padding:22px;margin-bottom:16px}.hero h2{margin:0 0 7px}.hero p{margin:0;opacity:.92}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:0 2px 8px rgba(20,30,50,.04)}.card h3{margin:0 0 6px;font-size:15px}.num{font-size:25px;font-weight:800}.muted{color:var(--muted);font-size:13px}
+.section{margin-top:16px}.section h2{font-size:18px}
+.actions{display:flex;flex-wrap:wrap;gap:9px}.actions button,button.primary{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:11px 14px;font-weight:700}button.secondary{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 13px;font-weight:650}
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.form input,.form select,.form textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff}.full{grid-column:1/-1}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);font-size:13px}
+.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#eaf2ff;color:var(--blue);font-size:12px;font-weight:700}
+.hidden{display:none}
+footer{max-width:1250px;margin:25px auto;padding:16px;color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.hero{padding:18px}main{padding:0 11px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img src="icon-192.png" alt="Labour Hisab logo">
+    <div><h1>Labour Hisab</h1><p>All-in-One • Attendance • Cashbook • Labour • Sites</p></div>
+  </div>
+  <nav id="nav">
+    <button data-page="dashboard" class="active">Dashboard</button>
+    <button data-page="workers">Workers</button>
+    <button data-page="attendance">Attendance</button>
+    <button data-page="payment">Payment</button>
+    <button data-page="reports">Reports</button>
+    <button data-page="sites">Sites</button>
+    <button data-page="backup">Backup</button>
+  </nav>
+</header>
 
-<div id="loginScreen" class="modal" style="z-index:100"><div><div style="text-align:center"><div style="font-size:48px">👷</div><h2>Labour Hisab Pro</h2><p class="muted">Offline Login • अपना data इसी फोन में सुरक्षित रखें</p></div><div id="firstSetup"><label>आपका नाम / Owner Name</label><input class="input" id="ownerName" placeholder="जैसे Subhash"><label>Company / Site Name</label><input class="input" id="companyName" placeholder="जैसे Subhash Construction"><label>Mobile / Email</label><input class="input" id="localUser" placeholder="Mobile या Email"><label>PIN / Password</label><input class="input" id="localPass" type="password" placeholder="कम से कम 6 अक्षर"><button class="btn primary" style="width:100%" onclick="localCreate()">Create Account / खाता बनाएं</button></div><div id="loginForm" class="hidden"><label>Mobile / Email</label><input class="input" id="loginUser" placeholder="Mobile या Email"><label>PIN / Password</label><input class="input" id="loginPass" type="password" placeholder="Password"><button class="btn primary" style="width:100%" onclick="localLogin()">Login / लॉगिन</button><button class="btn secondary" style="width:100%;margin-top:8px" onclick="showSetup()">Create New Account</button></div><p id="loginMsg" class="muted"></p><p class="muted">यह version बिना internet के भी चलता है। Cloud sync अलग सुविधा है और internet के बिना संभव नहीं है।</p></div></div>
-<main class="wrap">
-<section id="home"><div class="card assistant"><div class="title"><div><h3 id="smartTitle">⚡ Smart Assistant</h3><div class="muted" id="smartHint">Hindi/English commands work through built-in rules. No external AI/API.</div></div><span>⚡</span></div><div class="cmdrow"><input class="input" id="cmd" placeholder="Sanoj ko aaj present karo"><button class="btn dark" onclick="voice()">🎙️</button><button class="btn dark" onclick="command()">➤</button></div><div id="cmdResult"></div></div>
-<div class="grid4"><div class="card stat"><span class="muted" data-en="Workers" data-hi="मजदूर">Workers</span><b id="sWorkers">0</b></div><div class="card stat"><span class="muted" data-en="Today Present" data-hi="आज हाजिर">Today Present</span><b id="sPresent">0</b></div><div class="card stat"><span class="muted" data-en="This Month Pay" data-hi="इस महीने का हिसाब">This Month Pay</span><b id="sPay">₹0</b></div><div class="card stat"><span class="muted" data-en="Balance Due" data-hi="बाकी">Balance Due</span><b id="sBalance">₹0</b></div></div>
-<div class="grid3"><div class="card"><div class="muted">Attendance</div><h2 id="aRate">0%</h2><div class="progress"><i id="aBar" style="width:0%"></i></div></div><div class="card"><div class="muted">OT Hours</div><h2 id="sOt">0</h2><span class="muted">This month</span></div><div class="card"><div class="muted">Payments</div><h2 id="sPayments">₹0</h2><span class="muted">Recorded</span></div></div>
-<div class="card"><div class="title"><div><h3>Work Categories</h3><div class="muted">हर काम के लिए अलग rate और हिसाब</div></div><button class="btn secondary" onclick="show('workers')">+ Add Worker</button></div><div class="roles"><div class="role"><span>👷</span>Mistri</div><div class="role"><span>🧱</span>Labour</div><div class="role"><span>🧰</span>Helper</div><div class="role"><span>⚡</span>Electrician</div><div class="role"><span>🔧</span>Plumber</div><div class="role"><span>🎨</span>Painter</div><div class="role"><span>🪚</span>Carpenter</div><div class="role"><span>🚚</span>Driver</div></div></div>
-<div class="card"><div class="title"><h3>Quick Actions</h3></div><div class="row"><button class="btn primary" onclick="show('attendance')">📅 Attendance</button><button class="btn secondary" onclick="show('payment')">₹ Payment</button><button class="btn secondary" onclick="show('report')">📊 Reports</button></div><div class="row" style="margin-top:8px"><button class="btn secondary" onclick="show('sites')">🏗️ Sites</button><button class="btn secondary" onclick="show('data')">💾 Backup</button></div></div></section>
+<main>
+<section id="dashboard" class="page">
+  <div class="hero"><h2>Daily Attendance Register & Cashbook</h2><p>Manage labour, staff, salary, site expenses and daily cash — offline first.</p></div>
+  <div class="grid">
+    <div class="card"><h3>Workers</h3><div class="num" id="statWorkers">0</div><span class="muted">Labour & staff</span></div>
+    <div class="card"><h3>Today Attendance</h3><div class="num" id="statAtt">0</div><span class="muted">Marked today</span></div>
+    <div class="card"><h3>Payments</h3><div class="num" id="statPay">₹0</div><span class="muted">Recorded</span></div>
+    <div class="card"><h3>Expenses</h3><div class="num" id="statExp">₹0</div><span class="muted">Recorded</span></div>
+  </div>
+  <div class="section card"><h2>Quick actions</h2><div class="actions">
+    <button class="primary" onclick="go('attendance')">Mark Attendance</button>
+    <button class="primary" onclick="go('payment')">Add Payment</button>
+    <button class="secondary" onclick="go('workers')">Add Worker</button>
+    <button class="secondary" onclick="go('sites')">Add Site Expense</button>
+  </div></div>
+</section>
 
-<section id="workers" class="hidden"><div class="card"><div class="title"><div><h2>Add / Manage Worker</h2><div class="muted">Photo, name, work, rate, OT और site</div></div><button class="btn secondary" onclick="resetForm()">Clear</button></div><div class="photo" style="margin-top:10px"><div id="preview" class="avatarText">👤</div><label class="photoBtn">📷 Photo<input id="photo" type="file" accept="image/*" capture="environment" onchange="photoPreview(event)"></label></div><div class="row"><div><label>Name / नाम</label><input class="input" id="name" placeholder="Sanoj Kumar"></div><div><label>Mobile / मोबाइल</label><input class="input" id="mobile" inputmode="tel" placeholder="98xxxxxxxx"></div></div><div class="row"><div><label>Work / काम</label><select class="input" id="type"><option>Mistri</option><option>Labour</option><option>Helper</option><option>Electrician</option><option>Plumber</option><option>Painter</option><option>Carpenter</option><option>Driver</option><option>Other</option></select></div><div><label>Site / साइट</label><input class="input" id="site" placeholder="Site / Project name"></div></div><div class="row"><div><label>Daily Rate / दिहाड़ी</label><input class="input" id="rate" type="number" value="650"></div><div><label>OT Rate / घंटा</label><input class="input" id="otRate" type="number" value="100"></div></div><button class="btn primary" onclick="saveWorker()" id="saveWorker">Save Worker</button></div><div class="card"><div class="title"><h3>Worker List</h3><input class="input" style="max-width:280px;margin:0" id="search" oninput="renderWorkers()" placeholder="Search name / work / site"></div></div><div id="workerList"></div></section>
+<section id="workers" class="page hidden">
+  <div class="card"><h2>Workers & Staff</h2>
+    <div class="form">
+      <input id="wName" placeholder="Name / नाम">
+      <select id="wType"><option>Labour</option><option>Mistri</option><option>Helper</option><option>Staff</option><option>Driver</option><option>Other</option></select>
+      <input id="wPhone" placeholder="Mobile">
+      <input id="wRate" type="number" placeholder="Daily salary">
+      <button class="primary full" onclick="addWorker()">Add Worker</button>
+    </div>
+  </div>
+  <div class="section card"><table><thead><tr><th>Name</th><th>Type</th><th>Mobile</th><th>Rate</th></tr></thead><tbody id="workersTable"></tbody></table></div>
+</section>
 
-<section id="attendance" class="hidden"><div class="card"><div class="title"><div><h2>Attendance + OT</h2><div class="muted">P = Full • H = Half • A = Absent • OT = hours</div></div><input class="input" style="max-width:170px;margin:0" id="attDate" type="date" onchange="renderAttendance()"></div><div style="margin-top:10px"><button class="btn success" onclick="allPresent()">✓ All Present</button></div></div><div class="card" id="attList"></div></section>
+<section id="attendance" class="page hidden">
+  <div class="card"><h2>Attendance</h2><div class="form">
+    <select id="aWorker"></select><select id="aStatus"><option>Present</option><option>Absent</option><option>Half Day</option></select>
+    <input id="aDate" type="date"><input id="aOT" type="number" placeholder="OT hours">
+    <button class="primary full" onclick="addAttendance()">Save Attendance</button>
+  </div></div>
+  <div class="section card"><table><thead><tr><th>Date</th><th>Worker</th><th>Status</th><th>OT</th></tr></thead><tbody id="attTable"></tbody></table></div>
+</section>
 
-<section id="payment" class="hidden"><div class="card"><h2>Payment / Advance</h2><div class="row"><div><label>Worker</label><select class="input" id="payWorker"></select></div><div><label>Amount</label><input class="input" id="payAmount" type="number" placeholder="2000"></div></div><label>Type</label><select class="input" id="payType"><option>Payment</option><option>Advance</option><option>Bonus</option></select><label>Note</label><input class="input" id="payNote" placeholder="Weekly payment / Advance"><button class="btn primary" onclick="addPayment()">Save Payment</button></div><div id="payments"></div></section>
+<section id="payment" class="page hidden">
+  <div class="card"><h2>Payment & Cashbook</h2><div class="form">
+    <select id="pWorker"></select><input id="pAmount" type="number" placeholder="Amount ₹">
+    <select id="pKind"><option>Salary</option><option>Advance</option><option>Other</option></select>
+    <input id="pDate" type="date"><input id="pNote" placeholder="Note">
+    <button class="primary full" onclick="addPayment()">Save Payment</button>
+  </div></div>
+  <div class="section card"><table><thead><tr><th>Date</th><th>Worker</th><th>Type</th><th>Amount</th><th>Note</th></tr></thead><tbody id="payTable"></tbody></table></div>
+</section>
 
-<section id="report" class="hidden"><div class="card"><div class="title"><h2>Reports & Hisab</h2><div class="row" style="max-width:360px"><button class="btn secondary" onclick="exportCSV()">⬇ Excel/CSV</button><button class="btn secondary" onclick="exportPDF()">📄 PDF</button><button class="btn success" onclick="shareWhatsApp()">🟢 WhatsApp</button></div></div><div class="row" style="margin-top:10px"><div><label>Worker</label><select class="input" id="reportWorker" onchange="renderReport()"></select></div><div><label>Month</label><input class="input" id="reportMonth" type="month" onchange="renderReport()"></div></div><div id="reportBody"></div></div></section>
+<section id="reports" class="page hidden">
+  <div class="card"><h2>Reports</h2><p class="muted">Your data stays on this device until you export a backup.</p>
+  <div class="actions"><button class="primary" onclick="downloadReport()">Download Report</button><button class="secondary" onclick="window.print()">Print / Save PDF</button></div></div>
+  <div class="section grid">
+    <div class="card"><h3>Total Workers</h3><div class="num" id="rWorkers">0</div></div>
+    <div class="card"><h3>Total Payments</h3><div class="num" id="rPayments">₹0</div></div>
+    <div class="card"><h3>Total Attendance</h3><div class="num" id="rAttendance">0</div></div>
+    <div class="card"><h3>Total Site Expenses</h3><div class="num" id="rExpenses">₹0</div></div>
+  </div>
+</section>
 
-<section id="sites" class="hidden"><div class="card"><h2>Sites / Projects</h2><div class="row"><input class="input" id="siteName" placeholder="New site name"><button class="btn primary" onclick="addSite()">Add Site</button></div></div><div id="siteList"></div></section>
-<section id="data" class="hidden"><div class="card"><h3>Account / खाता</h3><div id="accountInfo" class="muted">Offline / Local Mode</div></div><div class="card"><h2>Backup & Data</h2><p class="muted">आपका data इसी फोन में local storage में रहता है। Backup करके सुरक्षित रख सकते हैं।</p><div class="row"><button class="btn primary" onclick="backup()">⬇ Download Backup</button><label class="btn secondary" style="text-align:center">⬆ Restore Backup<input id="restore" type="file" accept="application/json,.lhbackup" style="display:none" onchange="restore(event)"></label></div></div><div class="card"><h3>App Settings</h3><div class="row"><button class="btn secondary" onclick="toggleLang()">🇮🇳 Hindi / English</button><button class="btn secondary" onclick="toggleTheme()">☀️ / 🌙 Theme</button></div><p class="muted">Version 4 • Professional Workforce Edition</p><p class="muted" style="margin-top:12px"><a href="privacy-policy.html" style="color:#075bd6;font-weight:800">Privacy Policy / गोपनीयता नीति</a></p></div></section>
-</main><div class="bottom"><button data-page="home" class="active" onclick="show('home',this)">⌂<br>Home</button><button data-page="workers" onclick="show('workers',this)">👷<br>Workers</button><button data-page="attendance" onclick="show('attendance',this)">✓<br>Hajri</button><button data-page="payment" onclick="show('payment',this)">₹<br>Pay</button><button data-page="report" onclick="show('report',this)">▣<br>Report</button></div><div id="toast" class="toast hidden"></div>
+<section id="sites" class="page hidden">
+  <div class="card"><h2>Sites & Site Expenses</h2><div class="form">
+    <input id="sName" placeholder="Site name / साइट">
+    <input id="sAmount" type="number" placeholder="Expense ₹">
+    <input id="sDate" type="date"><input id="sNote" placeholder="Expense note">
+    <button class="primary full" onclick="addSite()">Save Site Expense</button>
+  </div></div>
+  <div class="section card"><table><thead><tr><th>Site</th><th>Date</th><th>Amount</th><th>Note</th></tr></thead><tbody id="siteTable"></tbody></table></div>
+</section>
+
+<section id="backup" class="page hidden">
+  <div class="card"><h2>Backup & Restore</h2><p class="muted">Create a backup file regularly. This protects your data if you change phones or clear app storage.</p>
+  <div class="actions"><button class="primary" onclick="backup()">Download Backup</button><button class="secondary" onclick="document.getElementById('restore').click()">Restore Backup</button><input id="restore" type="file" accept=".json" hidden onchange="restore(this.files[0])"></div></div>
+</section>
+</main>
+<footer>Labour Hisab • Offline-first • Privacy-friendly • Built for contractors, shops & small businesses</footer>
+
 <script>
-const KEY='labour_hisab_pro_v4';const today=new Date().toISOString().slice(0,10);let lang=localStorage.getItem('lh_lang')||'en';let editing=null,newPhoto='';let db=JSON.parse(localStorage.getItem(KEY)||'{"workers":[],"attendance":{},"payments":[],"sites":[],"expenses":[]}');
-const $=id=>document.getElementById(id);const money=n=>'₹'+Number(n||0).toLocaleString('en-IN');const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll();toast(lang==='hi'?'सेव हो गया':'Saved');}function toast(x){$('toast').textContent=x;$('toast').classList.remove('hidden');setTimeout(()=>$('toast').classList.add('hidden'),1700)}
-function show(id,btn){document.querySelectorAll('main>section').forEach(x=>x.classList.add('hidden'));$(id).classList.remove('hidden');document.querySelectorAll('nav button,.bottom button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.bottom button').forEach(x=>{if(x.dataset.page===id)x.classList.add('active')});if(btn)btn.classList.add('active');renderAll();scrollTo({top:0,behavior:'smooth'})}
-function toggleLang(){lang=lang==='en'?'hi':'en';localStorage.setItem('lh_lang',lang);applyLang()}function applyLang(){document.documentElement.lang=lang;$('tag').textContent=lang==='hi'?'काम • हाजिरी • पेमेंट • रिपोर्ट':'Work • Attendance • Payment • Reports';$('smartTitle').textContent=lang==='hi'?'⚡ स्मार्ट असिस्टेंट':'⚡ Smart Assistant';$('smartHint').textContent=lang==='hi'?'Hindi/English command बोलें या लिखें। Built-in smart rules से काम होगा।':'Type or speak Hindi/English commands. Built-in smart rules handle actions.';document.querySelectorAll('[data-en]').forEach(e=>e.textContent=e.dataset[lang]);renderAll()}
-function toggleTheme(){document.body.style.filter=document.body.style.filter?'':'invert(.92) hue-rotate(180deg)';toast('Theme changed')}
-function initials(n){return String(n||'?').trim().split(/\s+/).map(x=>x[0]).slice(0,2).join('').toUpperCase()}
-function photoPreview(e){let f=e.target.files?.[0];if(!f)return;let r=new FileReader();r.onload=()=>{let img=new Image();img.onload=()=>{let c=document.createElement('canvas'),m=500,s=Math.min(1,m/Math.max(img.width,img.height));c.width=img.width*s;c.height=img.height*s;c.getContext('2d').drawImage(img,0,0,c.width,c.height);newPhoto=c.toDataURL('image/jpeg',.78);$('preview').innerHTML='<img class="avatar" src="'+newPhoto+'">'};img.src=r.result};r.readAsDataURL(f)}
-function resetForm(){editing=null;newPhoto='';$('name').value='';$('mobile').value='';$('site').value='';$('rate').value=650;$('otRate').value=100;$('type').value='Mistri';$('photo').value='';$('preview').textContent='👤';$('saveWorker').textContent='Save Worker'}
-function saveWorker(){let n=$('name').value.trim();if(!n)return alert(lang==='hi'?'नाम डालें':'Enter name');let obj={id:editing||Date.now(),name:n,mobile:$('mobile').value.trim(),type:$('type').value,site:$('site').value.trim(),rate:+$('rate').value||0,otRate:+$('otRate').value||0,photo:newPhoto};if(editing){let i=db.workers.findIndex(w=>w.id===editing);db.workers[i]=obj}else db.workers.push(obj);resetForm();save()}
-function editWorker(id){let w=db.workers.find(x=>x.id===id);if(!w)return;editing=id;newPhoto=w.photo||'';$('name').value=w.name;$('mobile').value=w.mobile||'';$('site').value=w.site||'';$('rate').value=w.rate;$('otRate').value=w.otRate||0;$('type').value=w.type;$('preview').innerHTML=w.photo?'<img class="avatar" src="'+w.photo+'">':'<div class="avatarText">'+initials(w.name)+'</div>';$('saveWorker').textContent='Update Worker';show('workers')}
-function removeWorker(id){if(confirm(lang==='hi'?'मजदूर हटाएँ?':'Delete worker?')){db.workers=db.workers.filter(w=>w.id!==id);save()}}
-function stats(w,month){let full=0,half=0,ot=0;for(let [d,a] of Object.entries(db.attendance)){if(month&&d.slice(0,7)!==month)continue;let x=a[w.id];if(x?.status==='P')full++;if(x?.status==='H')half++;ot+=+(x?.ot||0)}let days=full+half/2;return{full,half,ot,days,pay:days*w.rate+ot*(w.otRate||0)}}
-function paid(id,month){return db.payments.filter(p=>p.wid===id&&(!month||p.date.slice(0,7)===month)).reduce((a,p)=>a+p.amount,0)}
-function renderWorkers(){let q=($('search')?.value||'').toLowerCase();let list=db.workers.filter(w=>(w.name+' '+w.type+' '+w.site+' '+w.mobile).toLowerCase().includes(q));$('workerList').innerHTML=list.length?list.map(w=>{let x=stats(w),g=paid(w.id),b=Math.max(0,x.pay-g);let av=w.photo?'<img class="avatar" src="'+w.photo+'">':'<div class="avatarText">'+initials(w.name)+'</div>';return '<div class="card worker"><div>'+av+'</div><div><div class="title"><b>'+esc(w.name)+'</b><span class="pill">'+esc(w.type)+'</span></div><div class="muted">'+esc(w.site||'No site')+' • '+money(w.rate)+'/day • OT '+money(w.otRate||0)+'/hr</div><div class="kpis"><div class="mini"><span class="muted">Days</span><b>'+x.days+'</b></div><div class="mini"><span class="muted">Total</span><b>'+money(x.pay)+'</b></div><div class="mini"><span class="muted">Balance</span><b class="'+(b?'red':'green')+'">'+money(b)+'</b></div></div></div><div><button class="btn secondary" onclick="editWorker('+w.id+')">Edit</button><button class="btn danger" onclick="removeWorker('+w.id+')">Delete</button></div></div>'}).join(''):'<div class="card empty">No workers yet. Add your first worker.</div>';let opts=db.workers.map(w=>'<option value="'+w.id+'">'+esc(w.name)+' — '+esc(w.type)+'</option>').join('');$('payWorker').innerHTML=opts;$('reportWorker').innerHTML=opts}
-function renderAttendance(){let d=$('attDate').value||today,a=db.attendance[d]||{};$('attList').innerHTML=db.workers.length?'<div class="att"><b>Worker</b><b>P</b><b>H</b><b>A</b><b>OT</b></div>'+db.workers.map(w=>{let x=a[w.id]||{},s=x.status||'';return '<div class="att"><div><b>'+esc(w.name)+'</b><div class="muted">'+esc(w.type)+' • '+money(w.rate)+'</div></div><button class="'+(s==='P'?'onP':'')+'" onclick="setAtt('+w.id+',\'P\')">P</button><button class="'+(s==='H'?'onH':'')+'" onclick="setAtt('+w.id+',\'H\')">H</button><button class="'+(s==='A'?'onA':'')+'" onclick="setAtt('+w.id+',\'A\')">A</button><button class="'+(x.ot?'onO':'')+'" onclick="addOT('+w.id+')">'+(x.ot||0)+'</button></div>'}).join(''):'<div class="empty">Add workers first.</div>'}
-function setAtt(id,status){let d=$('attDate').value||today;db.attendance[d]=db.attendance[d]||{};db.attendance[d][id]={...(db.attendance[d][id]||{}),status};save()}function addOT(id){let d=$('attDate').value||today,x=db.attendance[d]?.[id]||{};let h=prompt('OT hours / OT घंटे',x.ot||'1');if(h===null)return;h=Math.max(0,+h||0);db.attendance[d]=db.attendance[d]||{};db.attendance[d][id]={...x,ot:h};save()}function allPresent(){let d=$('attDate').value||today;db.attendance[d]=db.attendance[d]||{};db.workers.forEach(w=>db.attendance[d][w.id]={...(db.attendance[d][w.id]||{}),status:'P'});save()}
-function addPayment(){let wid=+$('payWorker').value,amt=+$('payAmount').value;if(!wid||amt<=0)return alert('Worker and amount required');db.payments.push({id:Date.now(),wid,amount:amt,type:$('payType').value,note:$('payNote').value.trim(),date:today});$('payAmount').value='';$('payNote').value='';save()}
-function renderPayments(){$('payments').innerHTML=db.payments.slice().reverse().map(p=>{let w=db.workers.find(x=>x.id===p.wid);return '<div class="card row"><div><b>'+esc(w?.name||'Worker')+'</b><div class="muted">'+p.date+' • '+esc(p.type)+' • '+esc(p.note||'')+'</div></div><b>'+money(p.amount)+'</b></div>'}).join('')||'<div class="card empty">No payments recorded.</div>'}
-function renderReport(){let w=db.workers.find(x=>x.id===+$('reportWorker').value),m=$('reportMonth').value||today.slice(0,7);if(!w){$('reportBody').innerHTML='<div class="empty">Add workers first.</div>';return}let x=stats(w,m),g=paid(w.id,m),b=x.pay-g;$('reportBody').innerHTML='<div class="card"><div class="worker"><div>'+(w.photo?'<img class="avatar" src="'+w.photo+'">':'<div class="avatarText">'+initials(w.name)+'</div>')+'</div><div><h3 style="margin:0">'+esc(w.name)+'</h3><div class="muted">'+esc(w.type)+' • '+esc(w.site||'No site')+'</div></div></div><div class="grid3" style="margin-top:12px"><div class="mini">Full Days<b>'+x.full+'</b></div><div class="mini">Half Days<b>'+x.half+'</b></div><div class="mini">OT Hours<b>'+x.ot+'</b></div><div class="mini">Earned<b>'+money(x.pay)+'</b></div><div class="mini">Paid<b>'+money(g)+'</b></div><div class="mini">Balance<b class="'+(b?'red':'green')+'">'+money(Math.max(0,b))+'</b></div></div></div>'}
-function renderSites(){$('siteList').innerHTML=db.sites.length?db.sites.map(s=>'<div class="card siteCard"><div class="title"><b>'+esc(s)+'</b><span class="badge">'+db.workers.filter(w=>w.site===s).length+' workers</span></div></div>').join(''):'<div class="card empty">No sites added.</div>'}function addSite(){let s=$('siteName').value.trim();if(!s)return;$('siteName').value='';if(!db.sites.includes(s))db.sites.push(s);save()}
-function renderHome(){let m=today.slice(0,7),total=0,given=0,ot=0,present=0,marked=0;db.workers.forEach(w=>{let x=stats(w,m);total+=x.pay;given+=paid(w.id,m);ot+=x.ot});let a=db.attendance[today]||{};Object.values(a).forEach(x=>{if(x.status==='P'||x.status==='H')present++;if(x.status)marked++});$('sWorkers').textContent=db.workers.length;$('sPresent').textContent=present;$('sPay').textContent=money(total);$('sBalance').textContent=money(Math.max(0,total-given));$('sOt').textContent=ot;$('sPayments').textContent=money(db.payments.filter(p=>p.date.slice(0,7)===m).reduce((a,p)=>a+p.amount,0));let rate=db.workers.length?Math.round(marked/db.workers.length*100):0;$('aRate').textContent=rate+'%';$('aBar').style.width=rate+'%'}
-function exportCSV(){
-  const rows=buildReportRows();
-  if(window.XLSX){
-    const ws=XLSX.utils.json_to_sheet(rows);
-    const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,'Labour Hisab');
-    XLSX.writeFile(wb,'labour-hisab-report.xlsx');
-    toast('Excel file downloaded');
-  }else{
-    const keys=Object.keys(rows[0]||{Name:'No data'});
-    const csv=[keys.join(','),...rows.map(r=>keys.map(k=>JSON.stringify(r[k]??'')).join(','))].join('\n');
-    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='labour-hisab-report.csv';a.click(); toast('Excel-compatible CSV downloaded');
-  }
-}
+const KEY='labour_hisab_all_in_one_v1';
+let db=JSON.parse(localStorage.getItem(KEY)||'{"workers":[],"attendance":[],"payments":[],"sites":[]}');
+const save=()=>{localStorage.setItem(KEY,JSON.stringify(db));render()};
+const today=()=>new Date().toISOString().slice(0,10);
+['aDate','pDate','sDate'].forEach(id=>document.getElementById(id).value=today());
 
-function exportPDF(){
-  const rows=buildReportRows();
-  if(!window.jspdf){ return window.print(); }
-  const {jsPDF}=window.jspdf; const doc=new jsPDF();
-  doc.setFontSize(18); doc.text('Labour Hisab Report',14,18);
-  doc.setFontSize(10); doc.text(new Date().toLocaleString('en-IN'),14,26);
-  let y=38;
-  rows.forEach((r,i)=>{
-    const line=`${r.Name} | ${r.Work} | Full: ${r.Full} | Half: ${r.Half} | OT: ${r.OT}h | Earned: ${r.Earned} | Paid: ${r.Paid} | Balance: ${r.Balance}`;
-    const lines=doc.splitTextToSize(line,180); doc.text(lines,14,y); y+=lines.length*6;
-    if(y>275){doc.addPage();y=18;}
-  });
-  doc.save('labour-hisab-report.pdf'); toast('PDF downloaded');
-}
-function buildReportRows(){
-  return db.workers.map(w=>{const d=calcMonth(w, $('reportMonth')?.value || today.slice(0,7));return {
-    Name:w.name, Work:w.type, Mobile:w.mobile||'', Site:w.site||'', Full:d.full, Half:d.half,
-    OT:d.ot, Earned:d.earned, Paid:d.paid, Balance:d.balance
-  }});
-}
+function go(page){document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));document.getElementById(page).classList.remove('hidden');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));render()}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
 
-function shareWhatsApp(){let wid=+$('reportWorker').value,m=$('reportMonth').value||today.slice(0,7),w=db.workers.find(x=>x.id===wid);if(!w){alert('Select a worker first.');return}let x=stats(w,m),g=paid(w.id,m),b=Math.max(0,x.pay-g);let text='Labour Hisab Pro\nWorker: '+w.name+' ('+w.type+')\nMonth: '+m+'\nFull Days: '+x.full+'\nHalf Days: '+x.half+'\nOT Hours: '+x.ot+'\nEarned: '+money(x.pay)+'\nPaid: '+money(g)+'\nBalance: '+money(b);let url='https://wa.me/?text='+encodeURIComponent(text);window.open(url,'_blank')}
-function backup(){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}));a.download='Labour-Hisab-Backup.lhbackup';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}function restore(e){let f=e.target.files?.[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.workers||!x.attendance)throw 0;db=x;save();toast('Backup restored')}catch{alert('Invalid backup file')}};r.readAsText(f)}
-function findWorker(q){q=q.toLowerCase().trim();return db.workers.find(w=>w.name.toLowerCase()===q)||db.workers.find(w=>(w.name+' '+w.type).toLowerCase().includes(q))||db.workers.find(w=>q.includes(w.name.toLowerCase()))}
-function command(){let q=$('cmd').value.trim(),l=q.toLowerCase();if(!q)return;let w=findWorker(l);let amt=(l.match(/(?:₹|rs\.?|rupaye|रुपये)\s*([0-9,]+)|([0-9,]+)\s*(?:₹|rs|rupaye|रुपये)/)||[])[1]||([])[2];amt=+(amt||0).toString().replace(/,/g,'');if(/report|रिपोर्ट|hisab|हिसाब/.test(l)&&w){$('reportWorker').value=w.id;show('report');$('cmdResult').innerHTML='<div class="msg">'+esc(w.name)+' report opened.</div>';return}if(w&&/absent|गैरहाजिर|छुट्टी/.test(l)){setCommandAtt(w,'A');return}if(w&&/half|आधा/.test(l)){setCommandAtt(w,'H');return}if(w&&/present|हाजिर|उपस्थित|पूरा/.test(l)){setCommandAtt(w,'P');return}if(w&&amt&&/pay|payment|advance|दिया|दे|भुगतान|एडवांस/.test(l)){db.payments.push({id:Date.now(),wid:w.id,amount:amt,type:/advance|एडवांस/.test(l)?'Advance':'Payment',note:'Smart command',date:today});save();$('cmdResult').innerHTML='<div class="msg">'+esc(w.name)+' '+money(amt)+' saved.</div>';return}if(/worker|मजदूर|labour/.test(l)){show('workers');$('cmdResult').innerHTML='<div class="msg">Workers opened.</div>';return}$('cmdResult').innerHTML='<div class="msg">'+(lang==='hi'?'कमांड समझ नहीं आई। मजदूर का नाम और काम साफ लिखें।':'Command not understood. Include the worker name and action.')+'</div>'}
-function setCommandAtt(w,s){let d=today;db.attendance[d]=db.attendance[d]||{};db.attendance[d][w.id]={...(db.attendance[d][w.id]||{}),status:s};save();$('cmdResult').innerHTML='<div class="msg">'+esc(w.name)+' — '+s+' saved.</div>'}
-function voice(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return alert('Voice recognition is not supported here.');let r=new SR();r.lang=lang==='hi'?'hi-IN':'en-IN';r.onresult=e=>{$('cmd').value=e.results[0][0].transcript;command()};r.start()}
-function renderAll(){renderHome();renderWorkers();renderAttendance();renderPayments();renderReport();renderSites()}
-$('attDate').value=today;$('reportMonth').value=today.slice(0,7);applyLang();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+function addWorker(){let n=wName.value.trim();if(!n)return alert('Enter worker name');db.workers.push({id:Date.now(),name:n,type:wType.value,phone:wPhone.value.trim(),rate:+wRate.value||0});wName.value=wPhone.value=wRate.value='';save()}
+function addAttendance(){if(!aWorker.value)return alert('Add a worker first');db.attendance.push({date:aDate.value,worker:+aWorker.value,status:aStatus.value,ot:+aOT.value||0});aOT.value='';save()}
+function addPayment(){if(!pWorker.value||!(+pAmount.value))return alert('Select worker and amount');db.payments.push({date:pDate.value,worker:+pWorker.value,kind:pKind.value,amount:+pAmount.value,note:pNote.value});pAmount.value=pNote.value='';save()}
+function addSite(){if(!sName.value.trim()||!(+sAmount.value))return alert('Enter site and amount');db.sites.push({name:sName.value.trim(),date:sDate.value,amount:+sAmount.value,note:sNote.value});sAmount.value=sNote.value='';save()}
+
+function name(id){return db.workers.find(w=>w.id===+id)?.name||'—'}
+function render(){
+ statWorkers.textContent=rWorkers.textContent=db.workers.length;
+ statAtt.textContent=rAttendance.textContent=db.attendance.filter(a=>a.date===today()).length;
+ let pay=db.payments.reduce((s,x)=>s+x.amount,0), exp=db.sites.reduce((s,x)=>s+x.amount,0);
+ statPay.textContent=rPayments.textContent='₹'+pay.toLocaleString('en-IN');
+ statExp.textContent=rExpenses.textContent='₹'+exp.toLocaleString('en-IN');
+ aWorker.innerHTML=pWorker.innerHTML='<option value="">Select worker</option>'+db.workers.map(w=>`<option value="${w.id}">${w.name} — ${w.type}</option>`).join('');
+ workersTable.innerHTML=db.workers.map(w=>`<tr><td>${esc(w.name)}</td><td><span class="badge">${esc(w.type)}</span></td><td>${esc(w.phone)}</td><td>₹${w.rate.toLocaleString('en-IN')}</td></tr>`).join('');
+ attTable.innerHTML=db.attendance.slice().reverse().map(a=>`<tr><td>${a.date}</td><td>${esc(name(a.worker))}</td><td>${a.status}</td><td>${a.ot||0}h</td></tr>`).join('');
+ payTable.innerHTML=db.payments.slice().reverse().map(p=>`<tr><td>${p.date}</td><td>${esc(name(p.worker))}</td><td>${p.kind}</td><td>₹${p.amount.toLocaleString('en-IN')}</td><td>${esc(p.note||'')}</td></tr>`).join('');
+ siteTable.innerHTML=db.sites.slice().reverse().map(s=>`<tr><td>${esc(s.name)}</td><td>${s.date}</td><td>₹${s.amount.toLocaleString('en-IN')}</td><td>${esc(s.note||'')}</td></tr>`).join('');
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function backup(){let blob=new Blob([JSON.stringify({app:'Labour Hisab',version:1,exportedAt:new Date().toISOString(),data:db},null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Labour-Hisab-Backup-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
+function restore(file){if(!file)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.data?.workers)throw 0;if(!confirm('Replace current data with this backup?'))return;db=x.data;save();alert('Backup restored successfully.')}catch(e){alert('Invalid backup file')}};r.readAsText(file)}
+function downloadReport(){let rows=[['Workers','Type','Mobile','Rate']];db.workers.forEach(w=>rows.push([w.name,w.type,w.phone,w.rate]));let csv=rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(',')).join('\\n');let b=new Blob([csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Labour-Hisab-Report-'+today()+'.csv';a.click();URL.revokeObjectURL(a.href)}
+render();
 </script>
-
-<script>
-const ACCOUNT_KEY='labour_hisab_local_account_v1';
-async function sha256(s){const b=new TextEncoder().encode(s);const h=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join('');}
-function account(){try{return JSON.parse(localStorage.getItem(ACCOUNT_KEY)||'null')}catch(e){return null}}
-function showSetup(){document.getElementById('firstSetup').classList.remove('hidden');document.getElementById('loginForm').classList.add('hidden');}
-function showLogin(){document.getElementById('firstSetup').classList.add('hidden');document.getElementById('loginForm').classList.remove('hidden');}
-async function localCreate(){let n=ownerName.value.trim(),c=companyName.value.trim(),u=localUser.value.trim(),p=localPass.value;if(!n||!u||p.length<6){loginMsg.textContent='नाम, Mobile/Email और कम से कम 6 अक्षर का Password भरें।';return}let a={name:n,company:c,user:u,pass:await sha256(p),createdAt:new Date().toISOString()};localStorage.setItem(ACCOUNT_KEY,JSON.stringify(a));localStorage.setItem('labour_hisab_logged_in','1');document.getElementById('loginScreen').classList.add('hidden');document.getElementById('logoutBtn').style.display='block';toast('Account created / खाता बन गया');}
-async function localLogin(){let a=account();if(!a){showSetup();return}let u=loginUser.value.trim(),p=loginPass.value;if(u===a.user && await sha256(p)===a.pass){localStorage.setItem('labour_hisab_logged_in','1');document.getElementById('loginScreen').classList.add('hidden');document.getElementById('logoutBtn').style.display='block';toast('Login successful')}else loginMsg.textContent='Mobile/Email या Password गलत है।'}
-function localLogout(){localStorage.removeItem('labour_hisab_logged_in');document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('logoutBtn').style.display='none';showLogin();}
-function initLocalLogin(){let a=account(), logged=localStorage.getItem('labour_hisab_logged_in')==='1';if(a&&logged){document.getElementById('loginScreen').classList.add('hidden');document.getElementById('logoutBtn').style.display='block';}else if(a){showLogin()}else{showSetup()}}
-window.addEventListener('load',()=>setTimeout(initLocalLogin,50));
-</script></body></html>
+</body>
+</html>
