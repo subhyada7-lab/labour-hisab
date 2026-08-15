@@ -3,206 +3,491 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labour Hisab - Construction Management</title>
+    <title>Labour Hisab - Ultimate Pro</title>
     <link rel="manifest" href="manifest.json">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #dbe4f0; color: #0f172a; padding-bottom: 75px; }
-        .app-header { background-color: #002366; color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-        .header-left { display: flex; align-items: center; gap: 12px; }
-        .app-logo-box { width: 44px; height: 44px; background-color: #f7a01d; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-        .app-title-container h1 { font-size: 18px; font-weight: 700; }
-        .app-title-container p { font-size: 11px; color: #93c5fd; }
-        .lang-select { background-color: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 4px 12px; font-size: 13px; outline: none; cursor: pointer; }
+        body { background-color: #0d2870; color: #0f172a; padding-bottom: 75px; }
         
-        .top-nav { background-color: white; display: flex; justify-content: space-around; padding: 10px 8px 0 8px; border-radius: 0 0 16px 16px; margin-bottom: 12px; }
-        .top-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; color: #475569; padding-bottom: 8px; cursor: pointer; width: 25%; font-weight: 500; }
-        .top-nav-item.active { color: #0052cc; font-weight: 700; border-bottom: 3px solid #0052cc; }
+        /* PIN Lock Overlay */
+        #pinLockOverlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0d2870; color: white; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+        .pin-box { background: rgba(255,255,255,0.1); padding: 24px; border-radius: 20px; text-align: center; width: 100%; max-width: 320px; backdrop-filter: blur(10px); }
+        .pin-input { width: 100%; padding: 12px; font-size: 24px; letter-spacing: 12px; text-align: center; margin: 15px 0; border-radius: 10px; border: 1px solid #a5b4fc; background: white; color: #0d2870; font-weight: bold; }
+        
+        .app-header { background-color: #0d2870; color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .app-logo { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; }
+        .app-title-container h1 { font-size: 17px; font-weight: 700; color: #ffffff; }
+        .app-title-container p { font-size: 11px; color: #a5b4fc; }
+        .lock-btn { background-color: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 6px 12px; font-size: 12px; cursor: pointer; }
 
-        .main-content { padding: 0 12px; max-width: 600px; margin: 0 auto; }
+        .top-nav { background-color: #ffffff; display: flex; justify-content: space-around; padding: 10px 4px 0 4px; border-radius: 18px 18px 0 0; }
+        .top-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #475569; padding-bottom: 8px; cursor: pointer; width: 25%; font-weight: 600; }
+        .top-nav-item.active { color: #0052cc; border-bottom: 3px solid #0052cc; }
+
+        .app-container { background-color: #f1f5f9; min-height: 100vh; padding: 14px 12px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
         .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
-        .metric-card { background: white; border-radius: 14px; padding: 12px 10px; display: flex; flex-direction: column; justify-content: space-between; min-height: 105px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
-        .metric-val { font-weight: 800; font-size: 16px; margin-top: 8px; color: #0f172a; }
-        .metric-title { font-size: 10px; color: #475569; margin-top: 2px; }
+        .metric-card { background: white; border-radius: 14px; padding: 12px 8px; display: flex; flex-direction: column; justify-content: space-between; min-height: 95px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .metric-num { font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 4px; }
+        .metric-label { font-size: 10px; color: #64748b; font-weight: 600; }
 
-        .section-card { background: white; border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .section-card { background: white; border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
         .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .section-title { font-size: 15px; font-weight: 700; }
+        .section-title { font-size: 14px; font-weight: 700; color: #0f172a; }
 
         .quick-actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; }
         .action-item { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; }
-        .action-icon-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-        .action-label { font-size: 11px; color: #334155; font-weight: 500; }
+        .action-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .action-label { font-size: 10px; color: #334155; font-weight: 600; }
 
-        .summary-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; margin-bottom: 12px; }
-        .stat-box { border-radius: 12px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; }
-        .stat-number { font-weight: 800; font-size: 18px; }
-        .stat-text { font-size: 11px; margin-top: 4px; font-weight: 600; }
+        /* List Styling */
+        .worker-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+        .worker-info h4 { font-size: 13px; font-weight: 700; color: #0f172a; }
+        .worker-info p { font-size: 11px; color: #64748b; margin-top: 2px; }
+        .badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: 700; margin-top: 3px; }
+        .badge-adv { background: #ffe4e6; color: #e11d48; }
+        .badge-ot { background: #dcfce7; color: #16a34a; }
 
-        /* Modal Styles */
+        .att-btns { display: flex; gap: 4px; }
+        .att-btn { border: none; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer; }
+        .btn-p { background: #dcfce7; color: #16a34a; }
+        .btn-hd { background: #fef3c7; color: #d97706; }
+        .btn-a { background: #ffe4e6; color: #e11d48; }
+        .btn-wa { background: #25D366; color: white; display: inline-flex; align-items: center; gap: 4px; text-decoration: none; padding: 6px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; }
+        .btn-edit { background: #e0f2fe; color: #0284c7; padding: 6px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; border: none; cursor: pointer; }
+
+        /* Modal Popup */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
-        .modal-content { background: white; width: 90%; max-width: 400px; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .modal-header h3 { font-size: 16px; }
-        .close-btn { font-size: 20px; cursor: pointer; color: #64748b; }
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 12px; margin-bottom: 4px; font-weight: 600; }
-        .form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; }
-        .submit-btn { width: 100%; padding: 10px; background: #0052cc; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        .modal-content { background: white; width: 90%; max-width: 380px; padding: 18px; border-radius: 16px; max-height: 90vh; overflow-y: auto; }
+        .form-group { margin-bottom: 10px; }
+        .form-group label { display: block; font-size: 11px; margin-bottom: 4px; font-weight: 600; }
+        .form-group input, .form-group select { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 12px; }
+        .submit-btn { width: 100%; padding: 10px; background: #0052cc; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 8px; }
 
-        .fab-center { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background-color: #0052cc; color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0, 82, 204, 0.4); cursor: pointer; z-index: 101; }
-        .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background-color: white; display: flex; justify-content: space-around; padding: 8px 0; border-top: 1px solid #e2e8f0; z-index: 100; }
-        .bottom-item { display: flex; flex-direction: column; align-items: center; font-size: 11px; color: #64748b; text-decoration: none; width: 20%; }
-        .bottom-item.active { color: #0052cc; font-weight: 700; }
+        .fab-center { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background-color: #0052cc; color: white; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 12px rgba(0, 82, 204, 0.4); cursor: pointer; z-index: 101; }
     </style>
 </head>
 <body>
 
+    <!-- SECURITY PIN LOCK OVERLAY -->
+    <div id="pinLockOverlay">
+        <div class="pin-box">
+            <i class="fa-solid fa-lock" style="font-size: 32px; margin-bottom: 10px;"></i>
+            <h2 id="pinTitle" style="font-size: 18px;">Enter Security PIN</h2>
+            <p style="font-size: 11px; color: #cbd5e1; margin-top: 4px;">Labour Hisab App is Protected</p>
+            <input type="password" id="pinInput" class="pin-input" maxlength="4" placeholder="••••">
+            <button onclick="checkPin()" class="submit-btn" style="background: #25D366;">Unlock App</button>
+            <p id="pinMsg" style="color: #f87171; font-size: 11px; margin-top: 8px; display: none;"></p>
+        </div>
+    </div>
+
     <header class="app-header">
         <div class="header-left">
-            <div class="app-logo-box">
-                <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
-                    <path d="M8 56H56V60H8V56Z" fill="#002366"/>
-                    <path d="M14 56V26L32 12L50 26V56H14Z" fill="#FFFFFF"/>
-                    <path d="M22 34H28V56H22V34Z" fill="#002366"/>
-                </svg>
-            </div>
+            <img src="icon-192.png" alt="Logo" class="app-logo" onerror="this.src='https://via.placeholder.com/40';">
             <div class="app-title-container">
                 <h1>Labour Hisab</h1>
-                <p>Construction Management</p>
+                <p>Ultimate Pro Edition</p>
             </div>
         </div>
-        <select class="lang-select" id="langSelect">
-            <option value="hi">हिंदी</option>
-            <option value="en">English</option>
-        </select>
+        <button class="lock-btn" onclick="lockApp()"><i class="fa-solid fa-lock"></i> Lock</button>
     </header>
 
     <nav class="top-nav">
-        <div class="top-nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></div>
-        <div class="top-nav-item"><i class="fa-solid fa-users"></i><span>Workers</span></div>
-        <div class="top-nav-item"><i class="fa-solid fa-calendar-days"></i><span>Attendance</span></div>
-        <div class="top-nav-item"><i class="fa-solid fa-indian-rupee-sign"></i><span>Payment</span></div>
+        <div class="top-nav-item active" onclick="switchTab('home', this)"><i class="fa-solid fa-house"></i><span>Home</span></div>
+        <div class="top-nav-item" onclick="switchTab('workers', this)"><i class="fa-solid fa-users"></i><span>Workers</span></div>
+        <div class="top-nav-item" onclick="switchTab('attendance', this)"><i class="fa-solid fa-calendar-days"></i><span>Attendance</span></div>
+        <div class="top-nav-item" onclick="switchTab('reports', this)"><i class="fa-solid fa-cloud-arrow-down"></i><span>Backup & Report</span></div>
     </nav>
 
-    <main class="main-content">
-        <div class="metrics-grid">
-            <div class="metric-card" style="background: #eef6ff;">
-                <div class="metric-val" id="totalWorkersCnt">0</div>
-                <div class="metric-title">Total Workers</div>
+    <main class="app-container">
+        
+        <!-- DASHBOARD TAB -->
+        <div id="tab-home" class="tab-content active">
+            <div class="metrics-grid">
+                <div class="metric-card" style="background: #e0f2fe;">
+                    <div class="metric-label">Total Workers</div>
+                    <div class="metric-num" id="totalWorkersCnt">0</div>
+                </div>
+                <div class="metric-card" style="background: #dcfce7;">
+                    <div class="metric-label">Present Today</div>
+                    <div class="metric-num" id="presentTodayCnt">0</div>
+                </div>
+                <div class="metric-card" style="background: #fef3c7;">
+                    <div class="metric-label">Net Payable Today</div>
+                    <div class="metric-num" id="totalPayableVal">₹ 0</div>
+                </div>
             </div>
-            <div class="metric-card" style="background: #f0fdf4;">
-                <div class="metric-val" id="totalPaidVal">₹ 0</div>
-                <div class="metric-title">Total Paid</div>
-            </div>
-            <div class="metric-card" style="background: #fffbeb;">
-                <div class="metric-val" id="totalPendingVal">₹ 0</div>
-                <div class="metric-title">Payables</div>
+
+            <div class="section-card">
+                <div class="section-header"><span class="section-title">Quick Controls</span></div>
+                <div class="quick-actions-grid">
+                    <div class="action-item" onclick="openWorkerModal()">
+                        <div class="action-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fa-solid fa-user-plus"></i></div>
+                        <span class="action-label">Add Worker</span>
+                    </div>
+                    <div class="action-item" onclick="switchTab('attendance', document.querySelectorAll('.top-nav-item')[2])">
+                        <div class="action-icon" style="background: #dcfce7; color: #16a34a;"><i class="fa-solid fa-calendar-check"></i></div>
+                        <span class="action-label">Attendance</span>
+                    </div>
+                    <div class="action-item" onclick="exportCSV()">
+                        <div class="action-icon" style="background: #ffedd5; color: #ea580c;"><i class="fa-solid fa-file-csv"></i></div>
+                        <span class="action-label">Export CSV</span>
+                    </div>
+                    <div class="action-item" onclick="exportBackup()">
+                        <div class="action-icon" style="background: #f3e8ff; color: #9333ea;"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                        <span class="action-label">Cloud Backup</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="section-card">
-            <div class="section-header"><span class="section-title">Quick Actions</span></div>
-            <div class="quick-actions-grid">
-                <div class="action-item" onclick="openWorkerModal()">
-                    <div class="action-icon-circle" style="background: #e0f2fe; color: #0284c7;"><i class="fa-solid fa-user-plus"></i></div>
-                    <span class="action-label">Add Worker</span>
+        <!-- WORKERS TAB -->
+        <div id="tab-workers" class="tab-content">
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-title">Worker List & Balances</span>
+                    <button onclick="openWorkerModal()" class="att-btn btn-p">+ Add New</button>
                 </div>
-                <div class="action-item" onclick="alert('Feature coming in next tab!')">
-                    <div class="action-icon-circle" style="background: #dcfce7; color: #16a34a;"><i class="fa-solid fa-calendar-check"></i></div>
-                    <span class="action-label">Attendance</span>
-                </div>
-                <div class="action-item" onclick="alert('Feature coming in next tab!')">
-                    <div class="action-icon-circle" style="background: #f3e8ff; color: #9333ea;"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                    <span class="action-label">Add Payment</span>
-                </div>
-                <div class="action-item" onclick="alert('Reports section ready!')">
-                    <div class="action-icon-circle" style="background: #ffedd5; color: #ea580c;"><i class="fa-solid fa-folder-closed"></i></div>
-                    <span class="action-label">Reports</span>
-                </div>
+                <div id="workersList"></div>
             </div>
         </div>
 
-        <div class="section-card">
-            <div class="section-header"><span class="section-title">Today's Attendance</span></div>
-            <div class="summary-stats-grid">
-                <div class="stat-box" style="background: #f0fdf4;"><span class="stat-number" style="color: #16a34a;" id="presentCount">0</span><span class="stat-text" style="color: #16a34a;">Present</span></div>
-                <div class="stat-box" style="background: #fff1f2;"><span class="stat-number" style="color: #e11d48;" id="absentCount">0</span><span class="stat-text" style="color: #e11d48;">Absent</span></div>
+        <!-- ATTENDANCE TAB -->
+        <div id="tab-attendance" class="tab-content">
+            <div class="section-card">
+                <div class="section-header"><span class="section-title">Daily Attendance & Overtime</span></div>
+                <div id="attendanceList"></div>
             </div>
         </div>
+
+        <!-- BACKUP & REPORTS TAB -->
+        <div id="tab-reports" class="tab-content">
+            <div class="section-card">
+                <div class="section-header"><span class="section-title"><i class="fa-solid fa-shield-halved"></i> App Security PIN</span></div>
+                <p style="font-size: 11px; color: #64748b; margin-bottom: 8px;">Set 4-digit PIN lock to protect your financial records.</p>
+                <div style="display:flex; gap:8px;">
+                    <input type="password" id="newPinInput" maxlength="4" placeholder="Set 4-Digit PIN" style="padding:8px; border:1px solid #cbd5e1; border-radius:8px; width:60%; font-size:12px;">
+                    <button onclick="saveSecurityPin()" class="att-btn btn-p" style="width:40%;">Save PIN</button>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header"><span class="section-title"><i class="fa-solid fa-cloud"></i> Cloud Data Backup & Restore</span></div>
+                <p style="font-size: 11px; color: #64748b; margin-bottom: 12px;">Backup all workers, advances, and logs into a file or restore from a previous backup.</p>
+                <button onclick="exportBackup()" class="submit-btn" style="background: #0284c7; margin-bottom:10px;"><i class="fa-solid fa-download"></i> Download Full Backup File</button>
+                <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importBackup(event)">
+                <button onclick="document.getElementById('importFile').click()" class="submit-btn" style="background: #d97706;"><i class="fa-solid fa-upload"></i> Restore Backup File</button>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header"><span class="section-title"><i class="fa-solid fa-file-excel"></i> Excel / CSV Report</span></div>
+                <button onclick="exportCSV()" class="submit-btn" style="background: #16a34a;"><i class="fa-solid fa-file-csv"></i> Download CSV Excel Report</button>
+            </div>
+        </div>
+
     </main>
 
-    <!-- Modal Form -->
+    <!-- Modal Form for Worker / Advance / OT -->
     <div class="modal" id="workerModal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>Add New Worker</h3>
-                <span class="close-btn" onclick="closeWorkerModal()">&times;</span>
+            <div class="section-header">
+                <h3 id="modalHead">Add Worker</h3>
+                <span onclick="closeWorkerModal()" style="cursor:pointer; font-weight:bold;">&times;</span>
             </div>
             <form id="workerForm">
+                <input type="hidden" id="editWorkerId">
                 <div class="form-group">
                     <label>Worker Name</label>
-                    <input type="text" id="wName" required placeholder="Enter name">
+                    <input type="text" id="wName" required placeholder="Worker Name">
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Phone Number</label>
+                    <input type="tel" id="wPhone" required placeholder="10 Digit Mobile No">
                 </div>
                 <div class="form-group">
                     <label>Role</label>
                     <select id="wRole">
                         <option>Mistri (Mason)</option>
                         <option>Labour (Helper)</option>
+                        <option>Supervisor</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Daily Wage Rate (₹)</label>
-                    <input type="number" id="wRate" required placeholder="e.g. 600">
+                    <input type="number" id="wRate" required placeholder="600">
                 </div>
-                <button type="submit" class="submit-btn">Save Worker</button>
+                <div class="form-group">
+                    <label>Advance Balance / Udhari (₹)</label>
+                    <input type="number" id="wAdvance" value="0" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label>Overtime Hours (Hours)</label>
+                    <input type="number" id="wOT" value="0" step="0.5" placeholder="0">
+                </div>
+                <button type="submit" class="submit-btn">Save Worker Details</button>
             </form>
         </div>
     </div>
 
     <div class="fab-center" onclick="openWorkerModal()"><i class="fa-solid fa-plus"></i></div>
 
-    <nav class="bottom-bar">
-        <a href="#" class="bottom-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
-        <a href="#" class="bottom-item"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
-    </nav>
-
     <script>
-        let workers = JSON.parse(localStorage.getItem('labour_data')) || [];
+        let workers = JSON.parse(localStorage.getItem('labour_db')) || [];
+        let savedPin = localStorage.getItem('labour_pin') || '';
 
-        function updateUI() {
-            document.getElementById('totalWorkersCnt').innerText = workers.length;
-            localStorage.setItem('labour_data', JSON.stringify(workers));
+        // Security Lock Functionality
+        if(!savedPin) {
+            document.getElementById('pinLockOverlay').style.display = 'none';
         }
 
-        function openWorkerModal() { document.getElementById('workerModal').style.display = 'flex'; }
+        function checkPin() {
+            const entered = document.getElementById('pinInput').value;
+            if(entered === savedPin) {
+                document.getElementById('pinLockOverlay').style.display = 'none';
+                document.getElementById('pinInput').value = '';
+                document.getElementById('pinMsg').style.display = 'none';
+            } else {
+                document.getElementById('pinMsg').innerText = 'Incorrect PIN! Try Again.';
+                document.getElementById('pinMsg').style.display = 'block';
+            }
+        }
+
+        function lockApp() {
+            if(!savedPin) {
+                alert('Please set a PIN first in the Backup & Report section.');
+                switchTab('reports', document.querySelectorAll('.top-nav-item')[3]);
+            } else {
+                document.getElementById('pinLockOverlay').style.display = 'flex';
+            }
+        }
+
+        function saveSecurityPin() {
+            const p = document.getElementById('newPinInput').value;
+            if(p.length === 4) {
+                savedPin = p;
+                localStorage.setItem('labour_pin', p);
+                alert('Security PIN Saved Successfully!');
+                document.getElementById('newPinInput').value = '';
+            } else {
+                alert('Please enter a valid 4-digit PIN');
+            }
+        }
+
+        function switchTab(tabId, el) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.top-nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            if(el) el.classList.add('active');
+            renderUI();
+        }
+
+        function openWorkerModal(id = null) {
+            if(id) {
+                const w = workers.find(item => item.id === id);
+                document.getElementById('modalHead').innerText = 'Edit Worker Hisab';
+                document.getElementById('editWorkerId').value = w.id;
+                document.getElementById('wName').value = w.name;
+                document.getElementById('wPhone').value = w.phone || '';
+                document.getElementById('wRole').value = w.role;
+                document.getElementById('wRate').value = w.rate;
+                document.getElementById('wAdvance').value = w.advance || 0;
+                document.getElementById('wOT').value = w.otHours || 0;
+            } else {
+                document.getElementById('modalHead').innerText = 'Add Worker';
+                document.getElementById('editWorkerId').value = '';
+                document.getElementById('workerForm').reset();
+            }
+            document.getElementById('workerModal').style.display = 'flex';
+        }
+
         function closeWorkerModal() { document.getElementById('workerModal').style.display = 'none'; }
 
         document.getElementById('workerForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            const editId = document.getElementById('editWorkerId').value;
             const name = document.getElementById('wName').value;
+            const phone = document.getElementById('wPhone').value;
             const role = document.getElementById('wRole').value;
-            const rate = document.getElementById('wRate').value;
+            const rate = parseFloat(document.getElementById('wRate').value);
+            const advance = parseFloat(document.getElementById('wAdvance').value) || 0;
+            const otHours = parseFloat(document.getElementById('wOT').value) || 0;
 
-            workers.push({ name, role, rate });
-            updateUI();
+            if(editId) {
+                const w = workers.find(item => item.id == editId);
+                w.name = name; w.phone = phone; w.role = role; w.rate = rate; w.advance = advance; w.otHours = otHours;
+            } else {
+                workers.push({ id: Date.now(), name, phone, role, rate, advance, otHours, status: 'P' });
+            }
+
+            saveAndRender();
             closeWorkerModal();
             this.reset();
-            alert('Worker added successfully!');
         });
 
-        updateUI();
+        function setAttendance(id, status) {
+            const worker = workers.find(w => w.id === id);
+            if(worker) {
+                worker.status = status;
+                saveAndRender();
+            }
+        }
+
+        function deleteWorker(id) {
+            if(confirm('Are you sure you want to delete this worker?')) {
+                workers = workers.filter(w => w.id !== id);
+                saveAndRender();
+            }
+        }
+
+        // WhatsApp Receipt Generator
+        function sendWhatsApp(id) {
+            const w = workers.find(item => item.id === id);
+            if(!w) return;
+
+            let today = new Date().toLocaleDateString();
+            let statusText = w.status === 'P' ? 'Present (उपस्थित)' : (w.status === 'HD' ? 'Half Day (आधा दिन)' : 'Absent (अनुपस्थित)');
+            let baseAmount = w.status === 'P' ? w.rate : (w.status === 'HD' ? w.rate / 2 : 0);
+            let otRatePerHour = (w.rate / 8); // Assuming 8 hr shift
+            let otAmount = (w.otHours || 0) * otRatePerHour;
+            let netPayable = (baseAmount + otAmount) - (w.advance || 0);
+
+            let message = `*LABOUR HISAB RECEIPT*%0A` +
+                          `📅 Date: ${today}%0A` +
+                          `👤 Worker: ${w.name}%0A` +
+                          `🛠 Role: ${w.role}%0A` +
+                          `---------------------------%0A` +
+                          `📌 Today Status: ${statusText}%0A` +
+                          `💵 Daily Wage: ₹${baseAmount}%0A` +
+                          `⏰ Overtime (${w.otHours || 0} hrs): +₹${otAmount.toFixed(0)}%0A` +
+                          `🔻 Advance Deducted: -₹${w.advance || 0}%0A` +
+                          `---------------------------%0A` +
+                          `💰 *NET PAYABLE TODAY: ₹${netPayable.toFixed(0)}*%0A%0A` +
+                          `_Generated via Labour Hisab App_`;
+
+            let cleanPhone = w.phone.replace(/[^0-9]/g, '');
+            if(cleanPhone.length === 10) cleanPhone = '91' + cleanPhone;
+
+            window.open(`https://wa.me/${cleanPhone}?text=${message}`, '_blank');
+        }
+
+        function saveAndRender() {
+            localStorage.setItem('labour_db', JSON.stringify(workers));
+            renderUI();
+        }
+
+        function renderUI() {
+            document.getElementById('totalWorkersCnt').innerText = workers.length;
+            const presentCount = workers.filter(w => w.status === 'P').length;
+            document.getElementById('presentTodayCnt').innerText = presentCount;
+            
+            let totalPayable = workers.reduce((sum, w) => {
+                let multiplier = w.status === 'P' ? 1 : (w.status === 'HD' ? 0.5 : 0);
+                let base = w.rate * multiplier;
+                let ot = (w.otHours || 0) * (w.rate / 8);
+                return sum + (base + ot - (w.advance || 0));
+            }, 0);
+            document.getElementById('totalPayableVal').innerText = '₹ ' + totalPayable.toFixed(0);
+
+            // Render Worker List
+            const wList = document.getElementById('workersList');
+            wList.innerHTML = workers.length === 0 ? '<p style="font-size:12px; color:#64748b;">No workers added.</p>' : '';
+            workers.forEach(w => {
+                wList.innerHTML += `
+                    <div class="worker-item">
+                        <div class="worker-info">
+                            <h4>${w.name}</h4>
+                            <p>${w.role} • ₹${w.rate}/day • 📞 ${w.phone || 'N/A'}</p>
+                            <div>
+                                ${w.advance > 0 ? `<span class="badge badge-adv">Adv: ₹${w.advance}</span>` : ''}
+                                ${w.otHours > 0 ? `<span class="badge badge-ot">OT: ${w.otHours} hrs</span>` : ''}
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:4px;">
+                            <button onclick="openWorkerModal(${w.id})" class="btn-edit"><i class="fa-solid fa-pen"></i></button>
+                            <a onclick="sendWhatsApp(${w.id})" class="btn-wa" href="javascript:void(0)"><i class="fa-brands fa-whatsapp"></i> Slip</a>
+                            <button onclick="deleteWorker(${w.id})" class="att-btn btn-a"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>`;
+            });
+
+            // Render Attendance Tab
+            const aList = document.getElementById('attendanceList');
+            aList.innerHTML = workers.length === 0 ? '<p style="font-size:12px; color:#64748b;">No workers added.</p>' : '';
+            workers.forEach(w => {
+                aList.innerHTML += `
+                    <div class="worker-item">
+                        <div class="worker-info">
+                            <h4>${w.name}</h4>
+                            <p>Rate: ₹${w.rate} | OT: ${w.otHours || 0} hrs</p>
+                        </div>
+                        <div class="att-btns">
+                            <button onclick="setAttendance(${w.id}, 'P')" class="att-btn ${w.status==='P'?'btn-p':''}">Present</button>
+                            <button onclick="setAttendance(${w.id}, 'HD')" class="att-btn ${w.status==='HD'?'btn-hd':''}">Half Day</button>
+                            <button onclick="setAttendance(${w.id}, 'A')" class="att-btn ${w.status==='A'?'btn-a':''}">Absent</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        // CSV Export
+        function exportCSV() {
+            if(workers.length === 0) return alert('No data to export!');
+            let csv = 'Name,Phone,Role,Daily Rate,Advance,OT Hours,Today Status\n';
+            workers.forEach(w => {
+                csv += `"${w.name}","${w.phone || ''}","${w.role}",${w.rate},${w.advance || 0},${w.otHours || 0},"${w.status}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'Labour_Hisab_Report.csv');
+            a.click();
+        }
+
+        // Backup Export & Import (JSON)
+        function exportBackup() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(workers));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `Labour_Hisab_Backup_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        function importBackup(event) {
+            const fileReader = new FileReader();
+            fileReader.onload = function(e) {
+                try {
+                    const importedWorkers = JSON.parse(e.target.result);
+                    if(Array.isArray(importedWorkers)) {
+                        workers = importedWorkers;
+                        saveAndRender();
+                        alert('Backup Data Successfully Restored!');
+                    } else {
+                        alert('Invalid Backup File Format');
+                    }
+                } catch(err) {
+                    alert('Error reading backup file');
+                }
+            };
+            fileReader.readAsText(event.target.files[0]);
+        }
+
+        renderUI();
     </script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('SW Registered!', reg))
-        .catch(err => console.log('SW Error:', err));
-    });
-  }
-</script>
-    
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('SW Registered!', reg))
+            .catch(err => console.log('SW Error:', err));
+        });
+      }
+    </script>
 </body>
 </html>
