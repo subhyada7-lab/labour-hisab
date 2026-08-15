@@ -1,12 +1,18 @@
-GITHUB UPLOAD
-Upload these runtime files:
-1. index.html
-2. manifest.json
-3. sw.js
-4. icon-192.png
-5. icon-512.png
-6. privacy-policy.html
+==================================================
+        LABOUR HISAB - PWA APPLICATION
+==================================================
 
-README.txt and SECURITY_NOTE.txt are documentation and are optional.
-Do not rename index.html.
-After uploading, open the GitHub Pages URL and hard-refresh once.
+Project: Construction Labour & Payment Management System
+Version: 2.0.0 (Enhanced UI Dashboard)
+
+Core Files Hierarchy:
+--------------------------------------------------
+1. index.html          - Main App UI & Logic Dashboard
+2. manifest.json       - PWA Web App Configuration
+3. sw.js              - Service Worker (Offline Support)
+4. privacy-policy.html - Privacy Policy Page
+5. icon-192.png       - App Icon (Small Standard)
+6. icon-512.png       - App Icon (Large Standard)
+
+Status: Active & Deployed via GitHub Pages
+==================================================
