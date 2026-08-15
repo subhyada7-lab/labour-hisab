@@ -1,4 +1,5 @@
 {
+  "id": "/labour-hisab/",
   "name": "Labour Hisab - Construction Management",
   "short_name": "Labour Hisab",
   "description": "Labour Attendance and Construction Management App",
@@ -19,6 +20,22 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Labour Hisab Screen"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Labour Hisab Screen"
     }
   ]
 }
