@@ -7,449 +7,65 @@
     <link rel="manifest" href="manifest.json">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #dbe4f0; color: #0f172a; padding-bottom: 75px; }
+        .app-header { background-color: #002366; color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .app-logo-box { width: 44px; height: 44px; background-color: #f7a01d; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .app-title-container h1 { font-size: 18px; font-weight: 700; }
+        .app-title-container p { font-size: 11px; color: #93c5fd; }
+        .lang-select { background-color: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 4px 12px; font-size: 13px; outline: none; cursor: pointer; }
+        
+        .top-nav { background-color: white; display: flex; justify-content: space-around; padding: 10px 8px 0 8px; border-radius: 0 0 16px 16px; margin-bottom: 12px; }
+        .top-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; color: #475569; padding-bottom: 8px; cursor: pointer; width: 25%; font-weight: 500; }
+        .top-nav-item.active { color: #0052cc; font-weight: 700; border-bottom: 3px solid #0052cc; }
 
-        body {
-            background-color: #dbe4f0;
-            color: #0f172a;
-            padding-bottom: 75px;
-        }
+        .main-content { padding: 0 12px; max-width: 600px; margin: 0 auto; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+        .metric-card { background: white; border-radius: 14px; padding: 12px 10px; display: flex; flex-direction: column; justify-content: space-between; min-height: 105px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .metric-val { font-weight: 800; font-size: 16px; margin-top: 8px; color: #0f172a; }
+        .metric-title { font-size: 10px; color: #475569; margin-top: 2px; }
 
-        /* Top Header */
-        .app-header {
-            background-color: #002366;
-            color: white;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        .section-card { background: white; border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .section-title { font-size: 15px; font-weight: 700; }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .quick-actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; }
+        .action-item { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; }
+        .action-icon-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .action-label { font-size: 11px; color: #334155; font-weight: 500; }
 
-        .app-logo-box {
-            width: 44px;
-            height: 44px;
-            background-color: #f7a01d;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
+        .summary-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; margin-bottom: 12px; }
+        .stat-box { border-radius: 12px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; }
+        .stat-number { font-weight: 800; font-size: 18px; }
+        .stat-text { font-size: 11px; margin-top: 4px; font-weight: 600; }
 
-        .app-title-container h1 {
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 1.2;
-        }
+        /* Modal Styles */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
+        .modal-content { background: white; width: 90%; max-width: 400px; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .modal-header h3 { font-size: 16px; }
+        .close-btn { font-size: 20px; cursor: pointer; color: #64748b; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 12px; margin-bottom: 4px; font-weight: 600; }
+        .form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; }
+        .submit-btn { width: 100%; padding: 10px; background: #0052cc; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
 
-        .app-title-container p {
-            font-size: 11px;
-            color: #93c5fd;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .lang-select {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: 13px;
-            outline: none;
-        }
-
-        .notif-btn {
-            position: relative;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .notif-badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: #ef4444;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Navigation Top Bar */
-        .top-nav {
-            background-color: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 8px 0 8px;
-            border-radius: 0 0 16px 16px;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
-
-        .top-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            font-size: 13px;
-            color: #475569;
-            padding-bottom: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            width: 25%;
-            font-weight: 500;
-        }
-
-        .top-nav-item i {
-            font-size: 18px;
-        }
-
-        .top-nav-item.active {
-            color: #0052cc;
-            font-weight: 700;
-            border-bottom: 3px solid #0052cc;
-        }
-
-        /* Container Main */
-        .main-content {
-            padding: 0 12px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Grid Metrics Cards */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 14px;
-        }
-
-        .metric-card {
-            background: white;
-            border-radius: 14px;
-            padding: 12px 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 105px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-            position: relative;
-        }
-
-        .metric-icon-bg {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-
-        .metric-val {
-            font-weight: 800;
-            font-size: 16px;
-            margin-top: 8px;
-            color: #0f172a;
-        }
-
-        .metric-title {
-            font-size: 10px;
-            color: #475569;
-            line-height: 1.2;
-            margin-top: 2px;
-        }
-
-        .metric-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-        }
-
-        .view-link {
-            font-size: 10px;
-            color: #0052cc;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Custom Card Section */
-        .section-card {
-            background: white;
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 14px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .section-link {
-            font-size: 12px;
-            color: #0052cc;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Quick Actions Bar */
-        .quick-actions-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 4px;
-            text-align: center;
-        }
-
-        .action-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .action-icon-circle {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-
-        .action-label {
-            font-size: 10px;
-            color: #334155;
-            font-weight: 500;
-            line-height: 1.1;
-        }
-
-        /* Today's Summary Row */
-        .summary-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            text-align: center;
-            margin-bottom: 12px;
-        }
-
-        .stat-box {
-            border-radius: 12px;
-            padding: 10px 4px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .stat-top {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .stat-icon {
-            font-size: 14px;
-        }
-
-        .stat-number {
-            font-weight: 800;
-            font-size: 18px;
-            color: #0f172a;
-        }
-
-        .stat-text {
-            font-size: 11px;
-            color: #334155;
-            margin-top: 4px;
-            font-weight: 600;
-        }
-
-        .total-workers-bar {
-            text-align: center;
-            font-size: 13px;
-            font-weight: 700;
-            color: #0052cc;
-        }
-
-        /* Projects List Grid */
-        .projects-flex {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-        }
-
-        .project-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 10px;
-            flex: 1;
-            min-width: 200px;
-            background: #ffffff;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            position: relative;
-        }
-
-        .project-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .project-info {
-            flex: 1;
-        }
-
-        .project-name {
-            font-weight: 700;
-            font-size: 13px;
-            color: #0f172a;
-        }
-
-        .project-loc {
-            font-size: 11px;
-            color: #64748b;
-            margin-top: 2px;
-        }
-
-        .project-date {
-            font-size: 10px;
-            color: #64748b;
-            margin-top: 2px;
-        }
-
-        .project-tag {
-            display: inline-block;
-            background: #e0edff;
-            color: #0052cc;
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-top: 4px;
-            font-weight: 600;
-        }
-
-        .project-more {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #94a3b8;
-            font-size: 12px;
-        }
-
-        /* Floating Center Action Button */
-        .fab-center {
-            position: fixed;
-            bottom: 22px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #0052cc;
-            color: white;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.4);
-            cursor: pointer;
-            z-index: 101;
-        }
-
-        /* Bottom Fixed Bar */
-        .bottom-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0;
-            border-top: 1px solid #e2e8f0;
-            z-index: 100;
-        }
-
-        .bottom-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            font-size: 11px;
-            color: #64748b;
-            text-decoration: none;
-            width: 20%;
-        }
-
-        .bottom-item.active {
-            color: #0052cc;
-            font-weight: 700;
-        }
-
-        .bottom-item i {
-            font-size: 18px;
-        }
+        .fab-center { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background-color: #0052cc; color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0, 82, 204, 0.4); cursor: pointer; z-index: 101; }
+        .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background-color: white; display: flex; justify-content: space-around; padding: 8px 0; border-top: 1px solid #e2e8f0; z-index: 100; }
+        .bottom-item { display: flex; flex-direction: column; align-items: center; font-size: 11px; color: #64748b; text-decoration: none; width: 20%; }
+        .bottom-item.active { color: #0052cc; font-weight: 700; }
     </style>
 </head>
 <body>
 
-    <!-- App Bar -->
     <header class="app-header">
         <div class="header-left">
-            <i class="fa-solid fa-bars" style="font-size: 18px; cursor: pointer;"></i>
-            <!-- Yellow Construction Logo -->
             <div class="app-logo-box">
-                <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
                     <path d="M8 56H56V60H8V56Z" fill="#002366"/>
                     <path d="M14 56V26L32 12L50 26V56H14Z" fill="#FFFFFF"/>
                     <path d="M22 34H28V56H22V34Z" fill="#002366"/>
-                    <path d="M36 34H42V42H36V34Z" fill="#002366"/>
-                    <path d="M36 46H42V54H36V46Z" fill="#002366"/>
-                    <path d="M44 14L52 6H56V10L48 18H44V14Z" fill="#002366"/>
-                    <path d="M46 8L50 12" stroke="#002366" stroke-width="2"/>
                 </svg>
             </div>
             <div class="app-title-container">
@@ -457,183 +73,126 @@
                 <p>Construction Management</p>
             </div>
         </div>
-        <div class="header-right">
-            <select class="lang-select">
-                <option>हिंदी</option>
-                <option>English</option>
-            </select>
-            <button class="notif-btn">
-                <i class="fa-regular fa-bell"></i>
-                <span class="notif-badge">3</span>
-            </button>
-        </div>
+        <select class="lang-select" id="langSelect">
+            <option value="hi">हिंदी</option>
+            <option value="en">English</option>
+        </select>
     </header>
 
-    <!-- Top Tabs Navigation -->
     <nav class="top-nav">
-        <div class="top-nav-item active">
-            <i class="fa-solid fa-house"></i>
-            <span>Dashboard</span>
-        </div>
-        <div class="top-nav-item">
-            <i class="fa-solid fa-users"></i>
-            <span>Workers</span>
-        </div>
-        <div class="top-nav-item">
-            <i class="fa-solid fa-calendar-days"></i>
-            <span>Attendance</span>
-        </div>
-        <div class="top-nav-item">
-            <i class="fa-solid fa-indian-rupee-sign"></i>
-            <span>Payment</span>
-        </div>
+        <div class="top-nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></div>
+        <div class="top-nav-item"><i class="fa-solid fa-users"></i><span>Workers</span></div>
+        <div class="top-nav-item"><i class="fa-solid fa-calendar-days"></i><span>Attendance</span></div>
+        <div class="top-nav-item"><i class="fa-solid fa-indian-rupee-sign"></i><span>Payment</span></div>
     </nav>
 
-    <!-- Main Content Body -->
     <main class="main-content">
-
-        <!-- Top Metrics Grid -->
         <div class="metrics-grid">
             <div class="metric-card" style="background: #eef6ff;">
-                <div class="metric-icon-bg" style="background: #cce3ff; color: #0052cc;">
-                    <i class="fa-solid fa-city"></i>
-                </div>
-                <div class="metric-val">12</div>
-                <div class="metric-title">Total Projects</div>
-                <div class="metric-footer">
-                    <a href="#" class="view-link">View all</a>
-                    <i class="fa-solid fa-chevron-right" style="font-size: 10px; color: #0052cc;"></i>
-                </div>
+                <div class="metric-val" id="totalWorkersCnt">0</div>
+                <div class="metric-title">Total Workers</div>
             </div>
-
             <div class="metric-card" style="background: #f0fdf4;">
-                <div class="metric-icon-bg" style="background: #bbf7d0; color: #16a34a;">
-                    <i class="fa-solid fa-circle-check"></i>
-                </div>
-                <div class="metric-val">7</div>
-                <div class="metric-title">Projects Completed</div>
-                <div class="metric-footer">
-                    <a href="#" class="view-link" style="color: #16a34a;">View all</a>
-                    <i class="fa-solid fa-chevron-right" style="font-size: 10px; color: #16a34a;"></i>
-                </div>
+                <div class="metric-val" id="totalPaidVal">₹ 0</div>
+                <div class="metric-title">Total Paid</div>
             </div>
-
-            <div class="metric-card" style="background: #fcf5ff;">
-                <div class="metric-icon-bg" style="background: #f3e8ff; color: #9333ea;">
-                    <i class="fa-solid fa-sack-dollar"></i>
-                </div>
-                <div class="metric-val">₹ 12,45,000</div>
-                <div class="metric-title">Overall Income</div>
-                <div class="metric-footer">
-                    <a href="#" class="view-link" style="color: #9333ea;">View all</a>
-                    <i class="fa-solid fa-chevron-right" style="font-size: 10px; color: #9333ea;"></i>
-                </div>
-            </div>
-
-            <div class="metric-card" style="background: #fff7ed;">
-                <div class="metric-icon-bg" style="background: #ffedd5; color: #ea580c;">
-                    <i class="fa-solid fa-circle-arrow-down"></i>
-                </div>
-                <div class="metric-val">₹ 8,75,000</div>
-                <div class="metric-title">Overall Expenses</div>
-                <div class="metric-footer">
-                    <a href="#" class="view-link" style="color: #ea580c;">View all</a>
-                    <i class="fa-solid fa-chevron-right" style="font-size: 10px; color: #ea580c;"></i>
-                </div>
-            </div>
-
             <div class="metric-card" style="background: #fffbeb;">
-                <div class="metric-icon-bg" style="background: #fef3c7; color: #d97706;">
-                    <i class="fa-solid fa-wallet"></i>
-                </div>
-                <div class="metric-val">₹ 3,70,000</div>
-                <div class="metric-title">Payables (To Workers)</div>
-                <div class="metric-footer">
-                    <a href="#" class="view-link" style="color: #d97706;">View all</a>
-                    <i class="fa-solid fa-chevron-right" style="font-size: 10px; color: #d97706;"></i>
-                </div>
-            </div>
-
-            <div class="metric-card" style="background: #fff1f2;">
-                <div class="metric-icon-bg" style="background: #ffe4e6; color: #e11d48;">
-                    <i class="fa-solid fa-scale-unbalanced"></i>
-                </div>
-                <div class="metric-val">₹ 1,25,000</div>
-                <div class="metric-title">Liabilities (Advances)</div>
-                <div class="metric-footer">
-                    <a href="#" class="view-link" style="color: #e11d48;">View all</a>
-                    <i class="fa-solid fa-chevron-right" style="font-size: 10px; color: #e11d48;"></i>
-                </div>
+                <div class="metric-val" id="totalPendingVal">₹ 0</div>
+                <div class="metric-title">Payables</div>
             </div>
         </div>
 
-        <!-- Quick Actions Card -->
         <div class="section-card">
-            <div class="section-header">
-                <span class="section-title">Quick Actions</span>
-            </div>
+            <div class="section-header"><span class="section-title">Quick Actions</span></div>
             <div class="quick-actions-grid">
-                <div class="action-item">
-                    <div class="action-icon-circle" style="background: #e0f2fe; color: #0284c7;">
-                        <i class="fa-solid fa-user-plus"></i>
-                    </div>
+                <div class="action-item" onclick="openWorkerModal()">
+                    <div class="action-icon-circle" style="background: #e0f2fe; color: #0284c7;"><i class="fa-solid fa-user-plus"></i></div>
                     <span class="action-label">Add Worker</span>
                 </div>
-
-                <div class="action-item">
-                    <div class="action-icon-circle" style="background: #dcfce7; color: #16a34a;">
-                        <i class="fa-solid fa-calendar-check"></i>
-                    </div>
-                    <span class="action-label">Mark Attendance</span>
+                <div class="action-item" onclick="alert('Feature coming in next tab!')">
+                    <div class="action-icon-circle" style="background: #dcfce7; color: #16a34a;"><i class="fa-solid fa-calendar-check"></i></div>
+                    <span class="action-label">Attendance</span>
                 </div>
-
-                <div class="action-item">
-                    <div class="action-icon-circle" style="background: #f3e8ff; color: #9333ea;">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                    </div>
+                <div class="action-item" onclick="alert('Feature coming in next tab!')">
+                    <div class="action-icon-circle" style="background: #f3e8ff; color: #9333ea;"><i class="fa-solid fa-hand-holding-dollar"></i></div>
                     <span class="action-label">Add Payment</span>
                 </div>
-
-                <div class="action-item">
-                    <div class="action-icon-circle" style="background: #ffedd5; color: #ea580c;">
-                        <i class="fa-solid fa-wallet"></i>
-                    </div>
-                    <span class="action-label">Add Advance</span>
-                </div>
-
-                <div class="action-item">
-                    <div class="action-icon-circle" style="background: #e0f2fe; color: #0891b2;">
-                        <i class="fa-solid fa-folder-closed"></i>
-                    </div>
+                <div class="action-item" onclick="alert('Reports section ready!')">
+                    <div class="action-icon-circle" style="background: #ffedd5; color: #ea580c;"><i class="fa-solid fa-folder-closed"></i></div>
                     <span class="action-label">Reports</span>
-                </div>
-
-                <div class="action-item">
-                    <div class="action-icon-circle" style="background: #f1f5f9; color: #64748b;">
-                        <i class="fa-solid fa-ellipsis"></i>
-                    </div>
-                    <span class="action-label">More</span>
                 </div>
             </div>
         </div>
 
-        <!-- Today's Summary Card -->
         <div class="section-card">
-            <div class="section-header">
-                <span class="section-title">Today's Summary</span>
-                <span style="font-size: 12px; color: #0052cc; font-weight: 500;"><i class="fa-regular fa-calendar"></i> 12 May 2026</span>
-            </div>
+            <div class="section-header"><span class="section-title">Today's Attendance</span></div>
             <div class="summary-stats-grid">
-                <div class="stat-box" style="background: #f0fdf4;">
-                    <div class="stat-top">
-                        <i class="fa-solid fa-users stat-icon" style="color: #16a34a;"></i>
-                        <span class="stat-number">68</span>
-                    </div>
-                    <span class="stat-text" style="color: #16a34a;">Present</span>
+                <div class="stat-box" style="background: #f0fdf4;"><span class="stat-number" style="color: #16a34a;" id="presentCount">0</span><span class="stat-text" style="color: #16a34a;">Present</span></div>
+                <div class="stat-box" style="background: #fff1f2;"><span class="stat-number" style="color: #e11d48;" id="absentCount">0</span><span class="stat-text" style="color: #e11d48;">Absent</span></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Form -->
+    <div class="modal" id="workerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Worker</h3>
+                <span class="close-btn" onclick="closeWorkerModal()">&times;</span>
+            </div>
+            <form id="workerForm">
+                <div class="form-group">
+                    <label>Worker Name</label>
+                    <input type="text" id="wName" required placeholder="Enter name">
                 </div>
-                <div class="stat-box" style="background: #fffbeb;">
-                    <div class="stat-top">
-                        <i class="fa-solid fa-user stat-icon" style="color: #d97706;"></i>
-                        <span class="stat-number">6</span>
-                    </div>
-                    <span class="stat-text" style="color: #d97706;">Half Day</s
+                <div class="form-group">
+                    <label>Role</label>
+                    <select id="wRole">
+                        <option>Mistri (Mason)</option>
+                        <option>Labour (Helper)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Daily Wage Rate (₹)</label>
+                    <input type="number" id="wRate" required placeholder="e.g. 600">
+                </div>
+                <button type="submit" class="submit-btn">Save Worker</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="fab-center" onclick="openWorkerModal()"><i class="fa-solid fa-plus"></i></div>
+
+    <nav class="bottom-bar">
+        <a href="#" class="bottom-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="#" class="bottom-item"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+    </nav>
+
+    <script>
+        let workers = JSON.parse(localStorage.getItem('labour_data')) || [];
+
+        function updateUI() {
+            document.getElementById('totalWorkersCnt').innerText = workers.length;
+            localStorage.setItem('labour_data', JSON.stringify(workers));
+        }
+
+        function openWorkerModal() { document.getElementById('workerModal').style.display = 'flex'; }
+        function closeWorkerModal() { document.getElementById('workerModal').style.display = 'none'; }
+
+        document.getElementById('workerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('wName').value;
+            const role = document.getElementById('wRole').value;
+            const rate = document.getElementById('wRate').value;
+
+            workers.push({ name, role, rate });
+            updateUI();
+            closeWorkerModal();
+            this.reset();
+            alert('Worker added successfully!');
+        });
+
+        updateUI();
+    </script>
+</body>
+</html>
