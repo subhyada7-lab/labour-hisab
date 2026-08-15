@@ -1,9 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="112" fill="#1264e8"/>
-<path d="M256 55 75 145v204l181 108 181-108V145L256 55Z" fill="#0a4db8" stroke="#fff" stroke-width="14"/>
-<path d="M145 250h222v132H145z" fill="#fff"/>
-<path d="m126 250 130-105 130 105" fill="none" stroke="#ffd21a" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="256" cy="204" r="43" fill="#ffd21a"/>
-<path d="M213 205h86M194 382h124" stroke="#1264e8" stroke-width="20" stroke-linecap="round"/>
-<path d="M335 287h-55v58h55z" fill="#ffd21a"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="90" fill="#0757c9"/><path d="M80 240 256 90l176 150v190H80z" fill="none" stroke="#ffd32a" stroke-width="25"/><path d="M175 410V270h162v140" fill="white"/><circle cx="256" cy="205" r="45" fill="#f1ae7a"/><path d="M195 190h122v24H195z" fill="#172033"/><path d="M208 255h96l30 110H178z" fill="#f59e0b"/><text x="256" y="455" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="36" fill="white">LABOUR HISAB</text></svg>
